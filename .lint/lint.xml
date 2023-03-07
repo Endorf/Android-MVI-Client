@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="NewApi" severity="fatal" />
+    <issue id="HardcodedText" severity="fatal" />
+    <issue id="InlinedApi" severity="fatal" />
+    <issue id="MissingSuperCall" severity="fatal" />
+    <issue id="StringFormatCount" severity="fatal" />
+    <issue id="StringFormatMatches" severity="fatal" />
+    <issue id="StringFormatInvalid" severity="fatal" />
+    <issue id="ViewConstructor" severity="fatal" />
+    <issue id="ViewHolder" severity="fatal" />
+    <issue id="ViewTag" severity="fatal" />
+    <issue id="WrongConstant" severity="fatal" />
+    <issue id="WrongViewCast" severity="fatal" />
+    <issue id="UnknownId" severity="fatal" />
+    <issue id="UselessParent" severity="fatal" />
+    <issue id="ObsoleteLayoutParam" severity="fatal" />
+    <issue id="ObsoleteSdkInt" severity="fatal" />
+    <issue id="MergeRootFrame" severity="fatal" />
+
+    <!--           RTL Rules               -->
+    <issue id="RtlCompat" severity="fatal" />
+    <issue id="RtlEnabled" severity="fatal" />
+    <issue id="RtlHardcoded" severity="fatal" />
+
+    <issue id="CheckResult" severity="fatal" />
+    <issue id="RedundantNamespace" severity="fatal" />
+    <issue id="TextFields" severity="fatal" />
+    <issue id="LogConditional" severity="fatal" />
+    <issue id="ImplicitSamInstance" severity="fatal" />
+    <issue id="DrawAllocation" severity="fatal" />
+
+    <issue id="MonochromeLauncherIcon" severity="fatal" />
+</lint>
