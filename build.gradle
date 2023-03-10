@@ -10,6 +10,20 @@ subprojects {
     apply plugin: "io.gitlab.arturbosch.detekt"
     apply plugin: "org.jlleitschuh.gradle.ktlint"
 
+    afterEvaluate {
+        if(it.hasProperty('android')){
+            android {
+                lintOptions {
+                    checkDependencies true
+                    showAll true
+                    explainIssues false
+                    lintConfig file("$rootDir/.lint/lint.xml")
+                    baseline file("$rootDir/.lint/lint-baseline.xml")
+                }
+            }
+        }
+    }
+
     detekt {
         buildUponDefaultConfig = true
         parallel = true
