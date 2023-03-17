@@ -49,9 +49,16 @@ dependencies {
     implementation jetpackCompose.androidx.ui.tooling.preview
     implementation jetpackCompose.androidx.material3
     debugImplementation jetpackCompose.androidx.ui.tooling
+    debugImplementation jetpackCompose.androidx.runtime.ktx
+    debugImplementation jetpackCompose.androidx.ui.test.manifest
     //endregion
     //region tests
     testImplementation tests.junit
+    testImplementation tests.mockk
+    testImplementation tests.mockito.core
+    testImplementation tests.kotlinx.coroutines.test
+    androidTestImplementation tests.junit
+    androidTestImplementation tests.junit.ktx
     androidTestImplementation tests.androidx.junit
     androidTestImplementation tests.androidx.espresso.core
     androidTestImplementation tests.androidx.compose.ui.test.junit4
