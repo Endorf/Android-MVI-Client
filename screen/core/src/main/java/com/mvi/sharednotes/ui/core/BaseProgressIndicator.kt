@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun ProgressView(
+fun BaseProgressView(
     isLoading: Boolean,
     modifier: Modifier
 ) {
