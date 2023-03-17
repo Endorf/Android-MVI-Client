@@ -47,19 +47,21 @@ android {
 }
 
 dependencies {
-
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.lifecycle.livedata.ktx
-    implementation libs.androidx.compose.activity
-    implementation libs.androidx.compose.ui
-    implementation libs.androidx.compose.ui.tooling.preview
-    implementation libs.androidx.compose.material
-    testImplementation testLibs.junit
-    debugImplementation libs.androidx.compose.ui.tooling
-    debugImplementation libs.androidx.compose.ui.test.manifest
-
-    androidTestImplementation testLibs.junit
-    androidTestImplementation testLibs.androidx.junit
-    androidTestImplementation testLibs.androidx.espresso.core
-    androidTestImplementation testLibs.androidx.compose.ui.test.junit4
+    implementation general.androidx.core.ktx
+    implementation general.androidx.lifecycle.livedata.ktx
+    implementation general.androidx.splashscreen
+    implementation general.accompanist.systemuicontroller
+    //region jetpack compose
+    implementation jetpackCompose.androidx.activity
+    implementation jetpackCompose.androidx.ui
+    implementation jetpackCompose.androidx.ui.tooling.preview
+    implementation jetpackCompose.androidx.material3
+    debugImplementation jetpackCompose.androidx.ui.tooling
+    debugImplementation jetpackCompose.androidx.ui.test.manifest
+    //endregion
+    testImplementation tests.junit
+    androidTestImplementation tests.junit
+    androidTestImplementation tests.androidx.junit
+    androidTestImplementation tests.androidx.espresso.core
+    androidTestImplementation tests.androidx.compose.ui.test.junit4
 }

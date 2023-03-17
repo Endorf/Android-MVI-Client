@@ -7,18 +7,21 @@ pluginManagement {
 }
 dependencyResolutionManagement {
     versionCatalogs {
-        libs {
+        general {
             library('androidx-core-ktx', 'androidx.core:core-ktx:1.9.0')
             library('androidx-lifecycle-livedata-ktx', 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.0')
-
-            library('androidx-compose-activity', 'androidx.activity:activity-compose:1.6.1')
-            library('androidx-compose-ui', 'androidx.compose.ui:ui:1.3.3')
-            library('androidx-compose-ui-tooling-preview', 'androidx.compose.ui:ui-tooling-preview:1.3.3')
-            library('androidx-compose-material', 'androidx.compose.material:material:1.3.1')
-            library('androidx-compose-ui-tooling', 'androidx.compose.ui:ui-tooling:1.3.3')
-            library('androidx-compose-ui-test-manifest', 'androidx.compose.ui:ui-test-manifest:1.3.3')
+            library('androidx-splashscreen', 'androidx.core:core-splashscreen:1.0.0')
+            library('accompanist-systemuicontroller', 'com.google.accompanist:accompanist-systemuicontroller:0.28.0')
         }
-        testLibs {
+        jetpackCompose {
+            library('androidx-activity', 'androidx.activity:activity-compose:1.6.1')
+            library('androidx-ui', 'androidx.compose.ui:ui:1.3.3')
+            library('androidx-ui-tooling-preview', 'androidx.compose.ui:ui-tooling-preview:1.3.3')
+            library('androidx-material3', 'androidx.compose.material3:material3:1.0.1')
+            library('androidx-ui-tooling', 'androidx.compose.ui:ui-tooling:1.3.3')
+            library('androidx-ui-test-manifest', 'androidx.compose.ui:ui-test-manifest:1.3.3')
+        }
+        tests {
             library('junit', 'junit:junit:4.13.2')
             library('androidx-junit', 'androidx.test.ext:junit:1.1.5')
             library('androidx-espresso-core', 'androidx.test.espresso:espresso-core:3.5.1')
