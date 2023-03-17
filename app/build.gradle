@@ -54,6 +54,8 @@ dependencies {
     implementation general.androidx.lifecycle.livedata.ktx
     implementation general.androidx.splashscreen
     implementation general.accompanist.systemuicontroller
+    implementation general.accompanist.navigation.animation
+    implementation general.androidx.navigation.compose
     //region jetpack compose
     implementation jetpackCompose.androidx.activity
     implementation jetpackCompose.androidx.ui
