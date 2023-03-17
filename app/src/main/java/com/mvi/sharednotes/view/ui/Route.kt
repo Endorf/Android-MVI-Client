@@ -9,5 +9,5 @@ enum class Route(
 
     LOGIN(R.string.title_login, false),
 
-    HOME(R.string.title_home, true),
+    HOME(R.string.title_home, true)
 }

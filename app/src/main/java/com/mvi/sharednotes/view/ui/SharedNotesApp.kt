@@ -1,11 +1,20 @@
 package com.mvi.sharednotes.view.ui
 
-import androidx.compose.animation.*
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,6 +38,8 @@ fun SharedNotesApp() {
     SharedNotesNavHost(navController)
 }
 
+private const val INITIAL_OFFSET_X = 1500
+
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun SharedNotesNavHost(
@@ -36,7 +47,6 @@ fun SharedNotesNavHost(
     modifier: Modifier = Modifier,
     startDestination: String = Route.LOGIN.name
 ) {
-
     val onNoteListEnter = {
         navController.navigate(Route.HOME.name) {
             popUpTo(Route.LOGIN.name) {
@@ -64,7 +74,7 @@ fun SharedNotesNavHost(
             navController = navController,
             startDestination = startDestination,
             modifier = modifier.padding(it),
-            enterTransition = { slideInHorizontally(initialOffsetX = { 1500 }) }
+            enterTransition = { slideInHorizontally(initialOffsetX = { INITIAL_OFFSET_X }) }
         ) {
             composable(Route.LOGIN.name) {
                 BaseButton(

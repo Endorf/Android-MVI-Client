@@ -58,9 +58,12 @@ class ShareNotesActivity : ComponentActivity() {
     private fun applySplashScreen() = installSplashScreen().apply {
         setOnExitAnimationListener {
             val fadeAnim = ObjectAnimator.ofFloat(
-                it.view, View.ALPHA, 1f, 0f
+                it.view,
+                View.ALPHA,
+                1f,
+                0f
             )
-            fadeAnim.duration = 300L
+            fadeAnim.duration = ANIMATION_DURATION
             fadeAnim.interpolator = AccelerateInterpolator()
             fadeAnim.start()
         }
@@ -70,5 +73,9 @@ class ShareNotesActivity : ComponentActivity() {
         SharedNotesTheme {
             SharedNotesApp()
         }
+    }
+
+    companion object {
+        private const val ANIMATION_DURATION = 300L
     }
 }
