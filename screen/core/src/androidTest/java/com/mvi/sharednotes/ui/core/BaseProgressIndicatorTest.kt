@@ -22,7 +22,9 @@ class BaseProgressIndicatorTest {
             setContent {
                 BaseProgressIndicator(
                     isLoading = true,
-                    modifier = Modifier.fillMaxWidth().testTag(PROGRESS)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag(PROGRESS)
                 )
             }
 
@@ -33,7 +35,12 @@ class BaseProgressIndicatorTest {
     @Test
     fun progressView_isNotVisible() {
         composeTestRule.apply {
-            setContent { BaseProgressIndicator(isLoading = false, modifier = Modifier.testTag(PROGRESS)) }
+            setContent {
+                BaseProgressIndicator(
+                    isLoading = false,
+                    modifier = Modifier.testTag(PROGRESS)
+                )
+            }
 
             onNode(hasTestTag(PROGRESS)).assertDoesNotExist()
         }

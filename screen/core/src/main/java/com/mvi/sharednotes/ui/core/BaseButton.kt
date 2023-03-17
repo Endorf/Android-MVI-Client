@@ -21,7 +21,7 @@ fun BaseButton(
         modifier = modifier,
         enabled = !isLoading,
         onClick = { onClickListener() },
-        shape = RoundedCornerShape(5.dp),
+        shape = RoundedCornerShape(5.dp)
     ) {
         Text(
             text = title,
