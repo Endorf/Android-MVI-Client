@@ -9,7 +9,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         libs {
             library('androidx-core-ktx', 'androidx.core:core-ktx:1.9.0')
-            library('androidx-lifecycle-livedata-ktx', 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1')
+            library('androidx-lifecycle-livedata-ktx', 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.0')
 
             library('androidx-compose-activity', 'androidx.activity:activity-compose:1.6.1')
             library('androidx-compose-ui', 'androidx.compose.ui:ui:1.3.3')
