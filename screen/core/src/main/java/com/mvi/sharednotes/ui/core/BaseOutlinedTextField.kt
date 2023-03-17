@@ -24,9 +24,9 @@ fun BaseOutlinedTextField(
     hasError: Boolean,
     label: String,
     placeholder: String,
-    icon: ImageVector,
+    icon: ImageVector?,
     userInputHandler: (String) -> Unit,
-    onLoginClickListener: () -> Unit,
+    onDoneClickListener: () -> Unit,
     modifier: Modifier
 ) {
     OutlinedTextField(
@@ -44,12 +44,12 @@ fun BaseOutlinedTextField(
         },
         shape = RoundedCornerShape(5.dp, 5.dp, 0.dp, 0.dp),
         value = value,
-        leadingIcon = { Icon(imageVector = icon, contentDescription = null) },
+        leadingIcon = { icon?.let { Icon(imageVector = icon, contentDescription = null) } },
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Email,
             imeAction = ImeAction.Done
         ),
-        keyboardActions = KeyboardActions(onDone = { onLoginClickListener() }),
+        keyboardActions = KeyboardActions(onDone = { onDoneClickListener() }),
         onValueChange = { userInputHandler(it) },
         label = { Text(text = label) },
         placeholder = { Text(text = placeholder) }
