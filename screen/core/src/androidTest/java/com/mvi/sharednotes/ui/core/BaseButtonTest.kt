@@ -11,35 +11,33 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class BaseProgressIndicatorTest {
+class BaseButtonTest {
 
     @get: Rule
     val composeTestRule = createComposeRule()
 
     @Test
-    fun progressView_isVisible() {
+    fun button_creation() {
         composeTestRule.apply {
             setContent {
-                BaseProgressIndicator(
+                BaseButton(
                     isLoading = true,
-                    modifier = Modifier.fillMaxWidth().testTag(PROGRESS)
+                    TITLE,
+                    {},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag(BUTTON_TAG)
                 )
             }
 
-            onNode(hasTestTag(PROGRESS)).assertExists()
-        }
-    }
-
-    @Test
-    fun progressView_isNotVisible() {
-        composeTestRule.apply {
-            setContent { BaseProgressIndicator(isLoading = false, modifier = Modifier.testTag(PROGRESS)) }
-
-            onNode(hasTestTag(PROGRESS)).assertDoesNotExist()
+            onNode(hasTestTag(BUTTON_TAG)).assertExists()
         }
     }
 
     companion object {
-        private const val PROGRESS = "progress_indicator"
+        private const val TITLE = "title"
+
+        private const val BUTTON_TAG = "button_tag"
     }
+
 }
