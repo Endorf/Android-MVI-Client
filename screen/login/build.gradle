@@ -1,25 +1,19 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace 'com.mvi.sharednotes'
+    namespace 'com.mvi.sharednotes.login'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.mvi.sharednotes"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -48,25 +42,18 @@ android {
 
 dependencies {
     //region application modules
-    implementation projects.screen.login
+    implementation projects.screen.core
     //endregion
     implementation general.androidx.core.ktx
-    implementation general.androidx.lifecycle.livedata.ktx
-    implementation general.androidx.splashscreen
-    implementation general.accompanist.systemuicontroller
-    implementation general.accompanist.navigation.animation
-    implementation general.androidx.navigation.compose
-    //region jetpack compose
-    implementation jetpackCompose.androidx.activity
-    implementation jetpackCompose.androidx.ui
-    implementation jetpackCompose.androidx.ui.tooling.preview
-    implementation jetpackCompose.androidx.material3
-    debugImplementation jetpackCompose.androidx.ui.tooling
-    debugImplementation jetpackCompose.androidx.ui.test.manifest
-    //endregion
+    //region tests
     testImplementation tests.junit
+    testImplementation tests.mockk
+    testImplementation tests.mockito.core
+    testImplementation tests.kotlinx.coroutines.test
     androidTestImplementation tests.junit
+    androidTestImplementation tests.junit.ktx
     androidTestImplementation tests.androidx.junit
     androidTestImplementation tests.androidx.espresso.core
     androidTestImplementation tests.androidx.compose.ui.test.junit4
+    //endregion
 }
