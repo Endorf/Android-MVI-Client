@@ -39,5 +39,4 @@ class BaseButtonTest {
 
         private const val BUTTON_TAG = "button_tag"
     }
-
 }
