@@ -16,7 +16,7 @@ class InitialViewModel : ViewModel() {
     }.stateIn(
         scope = viewModelScope,
         initialValue = InitialState.Loading,
-        started = SharingStarted.WhileSubscribed(TIMEOUT),
+        started = SharingStarted.WhileSubscribed(TIMEOUT)
     )
 
     // todo: replace with initialization from Repository
