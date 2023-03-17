@@ -59,7 +59,7 @@ class ShareNotesActivity : ComponentActivity() {
     private fun startComposeApplication() = setContent {
         SharedNotesTheme {
             Surface(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize()
             ) {
                 Greeting("Android")
             }

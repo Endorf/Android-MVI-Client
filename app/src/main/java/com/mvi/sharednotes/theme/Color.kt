@@ -1,4 +1,5 @@
 @file:Suppress("MagicNumber")
+
 package com.mvi.sharednotes.theme
 
 import androidx.compose.ui.graphics.Color
