@@ -5,7 +5,9 @@ import com.mvi.sharednotes.login.view.LoginViewModel
 import com.mvi.sharednotes.login.view.attributes.Event
 import com.mvi.sharednotes.login.view.components.middleware.LoggerMiddleware
 import com.mvi.sharednotes.login.view.components.middleware.Middleware
-import junit.framework.TestCase.*
+import junit.framework.TestCase.assertFalse
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

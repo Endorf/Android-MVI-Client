@@ -27,6 +27,8 @@ import com.mvi.sharednotes.ui.core.BaseProgressIndicator
 
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 internal const val EMAIL_TAG = "email_field"
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+internal const val LOGIN_BUTTON_TAG = "login_button"
 
 @Composable
 fun LoginScreen(
@@ -105,6 +107,7 @@ fun LoginLayout(
                 }
                 .fillMaxWidth()
                 .padding(defaultPadding, 0.dp)
+                .testTag(LOGIN_BUTTON_TAG)
         )
     }
 }
