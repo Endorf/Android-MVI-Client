@@ -9,6 +9,7 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.StateRestorationTester
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.mvi.sharednotes.login.UserInput.CORRECT_USER_INPUT
 import com.mvi.sharednotes.login.UserInput.INCORRECT_USER_INPUT
@@ -25,7 +26,7 @@ class LoginScreenTest {
     @Test
     fun loginScreen() {
         composeTestRule.setContent {
-            LoginScreen {}
+            LoginScreen(viewModel()) {}
         }
         val buttonTitle = composeTestRule.activity.getString(R.string.login_button_title)
         composeTestRule.onNodeWithText(buttonTitle).assertIsDisplayed()
@@ -37,7 +38,7 @@ class LoginScreenTest {
     fun onRecreationLoginScreen_stateIsRestored() {
         val restorationTester = StateRestorationTester(composeTestRule)
 
-        restorationTester.setContent { LoginScreen {} }
+        restorationTester.setContent { LoginScreen(viewModel()) {} }
 
         composeTestRule.onNodeWithTag(EMAIL_TAG).performTextInput(INCORRECT_USER_INPUT)
 
