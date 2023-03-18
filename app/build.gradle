@@ -48,7 +48,7 @@ android {
 
 dependencies {
     //region application modules
-    implementation projects.screen.core
+    implementation projects.screen.login
     //endregion
     implementation general.androidx.core.ktx
     implementation general.androidx.lifecycle.livedata.ktx
