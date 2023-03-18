@@ -5,7 +5,6 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -28,8 +27,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.mvi.sharednotes.R
+import com.mvi.sharednotes.login.LoginScreen
 import com.mvi.sharednotes.theme.TopAppBarColor
-import com.mvi.sharednotes.ui.core.BaseButton
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -58,7 +57,7 @@ fun SharedNotesNavHost(
     val backStackEntry by navController.currentBackStackEntryAsState()
 
     val currentScreen = Route.valueOf(
-        backStackEntry?.destination?.route ?: Route.LOGIN.name
+        backStackEntry?.destination?.route ?: Route.HOME.name
     )
 
     Scaffold(
@@ -76,14 +75,7 @@ fun SharedNotesNavHost(
             modifier = modifier.padding(it),
             enterTransition = { slideInHorizontally(initialOffsetX = { INITIAL_OFFSET_X }) }
         ) {
-            composable(Route.LOGIN.name) {
-                BaseButton(
-                    false,
-                    "LOGIN",
-                    onNoteListEnter,
-                    Modifier.fillMaxWidth()
-                )
-            }
+            composable(Route.LOGIN.name) { LoginScreen(onNoteListEnter) }
             composable(Route.HOME.name) { Text(text = "HOME") }
         }
     }

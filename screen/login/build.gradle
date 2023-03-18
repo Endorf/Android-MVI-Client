@@ -45,6 +45,16 @@ dependencies {
     implementation projects.screen.core
     //endregion
     implementation general.androidx.core.ktx
+    //region jetpack compose
+    implementation jetpackCompose.androidx.activity
+    implementation jetpackCompose.androidx.ui
+    implementation jetpackCompose.androidx.ui.tooling.preview
+    implementation jetpackCompose.androidx.material3
+    debugImplementation jetpackCompose.androidx.ui.tooling
+    debugImplementation jetpackCompose.androidx.runtime.ktx
+    debugImplementation jetpackCompose.androidx.ui.test.manifest
+    debugImplementation jetpackCompose.androidx.constraintlayout
+    //endregion
     //region tests
     testImplementation tests.junit
     testImplementation tests.mockk
