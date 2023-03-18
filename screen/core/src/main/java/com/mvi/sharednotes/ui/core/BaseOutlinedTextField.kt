@@ -12,6 +12,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -37,7 +38,7 @@ fun BaseOutlinedTextField(
             if (hasError) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = "stringResource(id = R.string.error_message_invalid_email)",
+                    text = stringResource(id = R.string.error_message_invalid_email),
                     color = MaterialTheme.colorScheme.error
                 )
             }

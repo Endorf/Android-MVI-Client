@@ -9,12 +9,18 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mvi.sharednotes.login.view.LoginViewModel
+import com.mvi.sharednotes.login.view.attributes.Event
+import com.mvi.sharednotes.login.view.attributes.State
 import com.mvi.sharednotes.ui.core.BaseButton
 import com.mvi.sharednotes.ui.core.BaseOutlinedTextField
 import com.mvi.sharednotes.ui.core.BaseProgressIndicator
@@ -22,18 +28,35 @@ import com.mvi.sharednotes.ui.core.BaseProgressIndicator
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 internal const val EMAIL_TAG = "email_field"
 
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+internal const val LOGIN_BUTTON_TAG = "login_button"
+
 @Composable
 fun LoginScreen(
+    viewModel: LoginViewModel,
     onNoteListEnter: () -> Unit
 ) {
-    val textChangeListener: (String) -> Unit = {}
-    val onLoginClickListener: () -> Unit = { onNoteListEnter() }
+    val effect by viewModel.effect.collectAsStateWithLifecycle()
+    LaunchedEffect(effect) {
+        when {
+            effect.transitionNotes -> onNoteListEnter()
+            else -> Unit
+        }
+    }
 
-    LoginLayout(textChangeListener, onLoginClickListener)
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    val textChangeListener: (String) -> Unit = {
+        viewModel.dispatch(Event.EmailUpdate(it))
+    }
+    val onLoginClickListener: () -> Unit = { viewModel.dispatch(Event.Login) }
+
+    LoginLayout(state, textChangeListener, onLoginClickListener)
 }
 
 @Composable
 fun LoginLayout(
+    state: State,
     textChangeListener: (String) -> Unit,
     onLoginClickListener: () -> Unit
 ) {
@@ -48,9 +71,7 @@ fun LoginLayout(
         val defaultPadding = dimensionResource(R.dimen.default_padding)
 
         EmailView(
-            "",
-            false,
-            false,
+            state,
             textChangeListener,
             onLoginClickListener,
             Modifier
@@ -65,7 +86,7 @@ fun LoginLayout(
         )
 
         ProgressIndicator(
-            true,
+            state.isLoading,
             Modifier
                 .constrainAs(progress) {
                     top.linkTo(parent.top)
@@ -76,7 +97,7 @@ fun LoginLayout(
         )
 
         LoginButton(
-            false,
+            state.isLoading,
             onLoginClickListener,
             Modifier
                 .constrainAs(button) {
@@ -87,23 +108,22 @@ fun LoginLayout(
                 }
                 .fillMaxWidth()
                 .padding(defaultPadding, 0.dp)
+                .testTag(LOGIN_BUTTON_TAG)
         )
     }
 }
 
 @Composable
 fun EmailView(
-    value: String,
-    isLoading: Boolean,
-    hasError: Boolean,
+    state: State,
     textChangeListener: (String) -> Unit,
     onDoneClickListener: () -> Unit,
     modifier: Modifier
 ) {
     BaseOutlinedTextField(
-        value,
-        isLoading,
-        hasError,
+        state.email,
+        state.isLoading,
+        state.hasError,
         stringResource(id = R.string.login_email_hint),
         stringResource(id = R.string.login_email_hint),
         Icons.Default.Email,
