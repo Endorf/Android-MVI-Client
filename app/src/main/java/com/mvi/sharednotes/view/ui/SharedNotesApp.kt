@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -75,7 +76,7 @@ fun SharedNotesNavHost(
             modifier = modifier.padding(it),
             enterTransition = { slideInHorizontally(initialOffsetX = { INITIAL_OFFSET_X }) }
         ) {
-            composable(Route.LOGIN.name) { LoginScreen(onNoteListEnter) }
+            composable(Route.LOGIN.name) { LoginScreen(viewModel(), onNoteListEnter) }
             composable(Route.HOME.name) { Text(text = "HOME") }
         }
     }
