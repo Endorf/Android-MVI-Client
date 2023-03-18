@@ -3,13 +3,16 @@ package com.mvi.sharednotes.view
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mvi.sharednotes.view.attributes.InitialState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
-class InitialViewModel : ViewModel() {
+@HiltViewModel
+class InitialViewModel @Inject constructor() : ViewModel() {
 
     val state = initialize().map {
         InitialState.Initialized

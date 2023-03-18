@@ -1,8 +1,9 @@
 package com.mvi.sharednotes.login.data
 
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class FakeRepository {
+class FakeRepository @Inject constructor() {
 
     suspend fun doAuth(email: String?): String? {
         delay(DELAY)

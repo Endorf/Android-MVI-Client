@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -41,8 +43,20 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes true
+}
+
+hilt {
+    enableAggregatingTask = true
+}
+
 dependencies {
     implementation general.androidx.core.ktx
+    //region Hilt
+    implementation general.hilt
+    kapt general.hilt.compiler
+    //endregion
     //region jetpack compose
     implementation jetpackCompose.androidx.activity
     implementation jetpackCompose.androidx.ui

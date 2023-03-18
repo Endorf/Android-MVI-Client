@@ -3,8 +3,9 @@ package com.mvi.sharednotes.login
 import com.mvi.sharednotes.login.data.FakeRepository
 import com.mvi.sharednotes.login.view.LoginViewModel
 import com.mvi.sharednotes.login.view.attributes.Event
+import com.mvi.sharednotes.login.view.components.Reducer
 import com.mvi.sharednotes.login.view.components.middleware.LoggerMiddleware
-import com.mvi.sharednotes.login.view.components.middleware.Middleware
+import com.mvi.sharednotes.login.view.components.middleware.MainMiddleware
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
@@ -18,9 +19,13 @@ import org.mockito.Mock
 import org.mockito.Mockito.any
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
+import org.mockito.Spy
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class LoginViewModelTest {
+
+    @Spy
+    lateinit var reducer: Reducer
 
     @Mock
     lateinit var repository: FakeRepository
@@ -35,8 +40,11 @@ class LoginViewModelTest {
         Dispatchers.setMain(Dispatchers.Unconfined)
         MockitoAnnotations.openMocks(this)
 
+        val middleware = MainMiddleware(repository, logger)
+
         viewModel = LoginViewModel(
-            middleware = Middleware(repository, logger)
+            reducer,
+            middleware
         )
     }
 

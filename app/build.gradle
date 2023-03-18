@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -46,9 +48,22 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes true
+}
+
+hilt {
+    enableAggregatingTask = true
+}
+
 dependencies {
     //region application modules
     implementation projects.screen.login
+    //endregion
+    //region Hilt
+    implementation general.hilt
+    implementation general.androidx.hilt.navigation
+    kapt general.hilt.compiler
     //endregion
     implementation general.androidx.core.ktx
     implementation general.androidx.lifecycle.livedata.ktx
