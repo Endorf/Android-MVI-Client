@@ -1,5 +1,6 @@
 package com.mvi.sharednotes.login
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -9,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -16,6 +18,8 @@ import com.mvi.sharednotes.ui.core.BaseButton
 import com.mvi.sharednotes.ui.core.BaseOutlinedTextField
 import com.mvi.sharednotes.ui.core.BaseProgressIndicator
 
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+internal const val EMAIL_TAG = "email_field"
 @Composable
 fun LoginScreen(
     onNoteListEnter: () -> Unit
@@ -52,6 +56,7 @@ fun LoginLayout(
                 }
                 .fillMaxWidth()
                 .padding(16.dp, 0.dp)
+                .testTag(EMAIL_TAG)
         )
 
         ProgressIndicator(
