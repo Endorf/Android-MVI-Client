@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -20,6 +21,7 @@ import com.mvi.sharednotes.ui.core.BaseProgressIndicator
 
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 internal const val EMAIL_TAG = "email_field"
+
 @Composable
 fun LoginScreen(
     onNoteListEnter: () -> Unit
@@ -42,6 +44,9 @@ fun LoginLayout(
     ) {
         val (text, button, progress) = createRefs()
 
+        val emailMargin = dimensionResource(R.dimen.login_email_field_margin)
+        val defaultPadding = dimensionResource(R.dimen.default_padding)
+
         EmailView(
             "",
             false,
@@ -50,12 +55,12 @@ fun LoginLayout(
             onLoginClickListener,
             Modifier
                 .constrainAs(text) {
-                    top.linkTo(button.top, margin = (-100).dp)
+                    top.linkTo(button.top, emailMargin)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 }
                 .fillMaxWidth()
-                .padding(16.dp, 0.dp)
+                .padding(defaultPadding, 0.dp)
                 .testTag(EMAIL_TAG)
         )
 
@@ -81,12 +86,10 @@ fun LoginLayout(
                     end.linkTo(parent.end)
                 }
                 .fillMaxWidth()
-                .padding(16.dp, 0.dp)
+                .padding(defaultPadding, 0.dp)
         )
     }
-
 }
-
 
 @Composable
 fun EmailView(

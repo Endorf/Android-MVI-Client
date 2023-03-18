@@ -1,7 +1,12 @@
 package com.mvi.sharednotes.login
 
 import androidx.activity.ComponentActivity
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.assert
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.performTextInput
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.StateRestorationTester
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -32,7 +37,7 @@ class LoginScreenTest {
     fun onRecreationLoginScreen_stateIsRestored() {
         val restorationTester = StateRestorationTester(composeTestRule)
 
-        restorationTester.setContent { LoginScreen() {} }
+        restorationTester.setContent { LoginScreen {} }
 
         composeTestRule.onNodeWithTag(EMAIL_TAG).performTextInput(INCORRECT_USER_INPUT)
 
