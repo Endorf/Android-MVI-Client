@@ -6,6 +6,6 @@ import com.mvi.sharednotes.login.view.attributes.Action
 class LoggerMiddleware {
 
     fun dispatch(action: Action) {
-        Log.e("Notes-Logger", "$action")
+        Log.e("Login-Logger", "$action")
     }
 }
