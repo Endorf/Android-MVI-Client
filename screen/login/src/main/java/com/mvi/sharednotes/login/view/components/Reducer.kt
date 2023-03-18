@@ -21,13 +21,26 @@ class Reducer {
         action: Action
     ) {
         when (action) {
-            Action.Loading -> state.value = state.value.copy(isLoading = true, hasError = false)
+            Action.Loading -> state.value = state.value.copy(
+                isLoading = true,
+                hasError = false
+            )
             is Action.SignedIn -> {
-                state.value = state.value.copy(isLoading = false, hasError = false, isSigned = true)
+                state.value = state.value.copy(
+                    isLoading = false,
+                    hasError = false,
+                    isSigned = true
+                )
                 effect.value = effect.value.copy(transitionNotes = true)
             }
-            Action.Error -> state.value = state.value.copy(isLoading = false, hasError = true)
-            is Action.Input -> state.value = state.value.copy(email = action.userInput, hasError = false)
+            Action.Error -> state.value = state.value.copy(
+                isLoading = false,
+                hasError = true
+            )
+            is Action.Input -> state.value = state.value.copy(
+                email = action.userInput,
+                hasError = false
+            )
         }
     }
 }
