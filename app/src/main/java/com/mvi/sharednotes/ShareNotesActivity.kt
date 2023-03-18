@@ -19,10 +19,12 @@ import com.mvi.sharednotes.theme.SharedNotesTheme
 import com.mvi.sharednotes.view.InitialViewModel
 import com.mvi.sharednotes.view.attributes.InitialState
 import com.mvi.sharednotes.view.ui.SharedNotesApp
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ShareNotesActivity : ComponentActivity() {
 
     private val viewModel: InitialViewModel by viewModels()
