@@ -8,10 +8,11 @@ import com.mvi.sharednotes.login.view.attributes.State
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class Middleware(
-    private val repository: FakeRepository = FakeRepository(),
-    private val loggerMiddleware: LoggerMiddleware = LoggerMiddleware()
+class MainMiddleware @Inject constructor(
+    private val repository: FakeRepository,
+    private val loggerMiddleware: LoggerMiddleware
 ) {
 
     fun dispatch(state: State, event: Event): Flow<Action> = when (event) {
