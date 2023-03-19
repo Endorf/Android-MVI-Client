@@ -52,7 +52,7 @@ hilt {
 
 dependencies {
     //region application modules
-    implementation projects.screen.core
+    implementation projects.core.ui
     implementation projects.core.network
     //endregion
     implementation general.androidx.core.ktx

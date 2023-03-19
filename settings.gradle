@@ -60,6 +60,7 @@ dependencyResolutionManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "SharedNotes"
 include ':app'
-include ':screen:core'
+include ':core:ui'
+include ':core:network'
 include ':screen:login'
 include ':core:network'
