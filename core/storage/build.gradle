@@ -15,6 +15,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("int", "DB_VERSION", "1")
+        buildConfigField("String", "DB_NAME", "\"${getLocalProperty("DB_NAME")}\"")
     }
 
     buildTypes {
@@ -57,6 +60,11 @@ dependencies {
     //region Hilt
     implementation general.hilt
     kapt general.hilt.compiler
+    //endregion
+    //region storage
+    implementation storage.androidx.room
+    kapt storage.androidx.room.compiler
+    implementation storage.androidx.datastore.preferences
     //endregion
     testImplementation tests.junit
     testImplementation tests.junit.ktx
