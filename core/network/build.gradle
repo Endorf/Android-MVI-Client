@@ -48,6 +48,7 @@ android {
 
 dependencies {
     implementation general.androidx.core.ktx
+    implementation jetpackCompose.androidx.activity
     //region Hilt
     implementation general.hilt
     kapt general.hilt.compiler
