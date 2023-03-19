@@ -34,7 +34,7 @@ class Reducer @Inject constructor() {
                 )
                 effect.value = effect.value.copy(transitionNotes = true)
             }
-            Action.Error -> state.value = state.value.copy(
+            is Action.Error -> state.value = state.value.copy(
                 isLoading = false,
                 hasError = true
             )

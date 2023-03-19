@@ -6,7 +6,7 @@ sealed interface Action {
 
     data class Input(val userInput: String) : Action
 
-    object Error : Action
+    data class Error(val e: Throwable? = null) : Action
 
     data class SignedIn(
         val user: String?
