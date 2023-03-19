@@ -52,7 +52,12 @@ dependencies {
     implementation general.hilt
     kapt general.hilt.compiler
     //endregion
-
+    //region network
+    implementation network.okhttp3.logging.interceptor
+    implementation network.gson
+    implementation network.retrofit2
+    implementation network.retrofit2.converter.gson
+    //endregion
     testImplementation tests.junit
     testImplementation tests.junit.ktx
     androidTestImplementation tests.androidx.junit
