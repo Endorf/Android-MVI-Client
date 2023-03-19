@@ -8,6 +8,7 @@ import com.mvi.sharednotes.login.view.attributes.State
 import com.mvi.sharednotes.login.view.components.middleware.Middleware
 import com.mvi.sharednotes.login.view.components.Reducer
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.onEach
@@ -30,7 +31,7 @@ class LoginViewModel @Inject constructor(
         get() = _state
 
     fun dispatch(event: Event) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             middleware.dispatch(_state.value, event)
                 .onEach {
                     reducer.sendEvent(_state, _effect, it)

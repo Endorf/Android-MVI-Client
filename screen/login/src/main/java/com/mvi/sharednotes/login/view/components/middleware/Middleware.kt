@@ -2,6 +2,7 @@ package com.mvi.sharednotes.login.view.components.middleware
 
 import androidx.core.util.PatternsCompat
 import com.mvi.sharednotes.login.data.Repository
+import com.mvi.sharednotes.login.exception.EmailNotValidException
 import com.mvi.sharednotes.login.view.attributes.Event
 import com.mvi.sharednotes.login.view.attributes.Action
 import com.mvi.sharednotes.login.view.attributes.State
@@ -29,7 +30,7 @@ class Middleware @Inject constructor(
     private suspend fun login(state: State): Flow<Action> {
         return flow {
             if (validateEmail(state.email).not()) {
-                emitAction(Action.Error)
+                emitAction(Action.Error(EmailNotValidException()))
                 return@flow
             }
             emitAction(Action.Loading)
@@ -41,7 +42,7 @@ class Middleware @Inject constructor(
                     emitAction(Action.Loading)
                     repository.create(credentials)
                         .catch {
-                            emitAction(Action.Error)
+                            emitAction(Action.Error(it))
                         }.collect {
                             emitAction(Action.SignedIn(it.email))
                         }
