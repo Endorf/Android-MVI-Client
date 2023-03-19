@@ -11,8 +11,7 @@ class RemoteUserDataStoreImpl @Inject constructor(
 ) : RemoteUserDataStore {
 
     override suspend fun create(user: UserEntity): Flow<UserEntity> = flow {
-//        val newUser = api.create(user)
-        val newUser = api.get(-3)
+        val newUser = api.create(user)
         emit(newUser)
     }
 
