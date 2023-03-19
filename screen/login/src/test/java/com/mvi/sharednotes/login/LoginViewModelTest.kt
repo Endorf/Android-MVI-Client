@@ -1,16 +1,19 @@
 package com.mvi.sharednotes.login
 
-import com.mvi.sharednotes.login.data.FakeRepository
+import com.mvi.sharednotes.login.data.Repository
 import com.mvi.sharednotes.login.view.LoginViewModel
 import com.mvi.sharednotes.login.view.attributes.Event
 import com.mvi.sharednotes.login.view.components.Reducer
 import com.mvi.sharednotes.login.view.components.middleware.LoggerMiddleware
 import com.mvi.sharednotes.login.view.components.middleware.Middleware
+import com.mvi.sharednotes.login.view.entity.UserCredentials
+import com.mvi.sharednotes.network.data.api.user.entity.UserEntity
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Before
@@ -28,7 +31,7 @@ class LoginViewModelTest {
     lateinit var reducer: Reducer
 
     @Mock
-    lateinit var repository: FakeRepository
+    lateinit var repository: Repository
 
     @Mock
     lateinit var logger: LoggerMiddleware
@@ -63,7 +66,7 @@ class LoginViewModelTest {
 
     @Test
     fun emailUpdateEvent() = runTest {
-        `when`(repository.doAuth(any())).thenReturn(USER_INPUT_CORRECT)
+        `when`(repository.get(UserCredentials(USER_INPUT_CORRECT))).thenReturn(any())
 
         viewModel.dispatch(Event.EmailUpdate(USER_INPUT_CORRECT))
 
@@ -76,7 +79,7 @@ class LoginViewModelTest {
 
     @Test
     fun loginEvent_Success() = runTest {
-        `when`(repository.doAuth(any())).thenReturn(USER_INPUT_CORRECT)
+        `when`(repository.get(UserCredentials(USER_INPUT_CORRECT))).thenReturn(flowOf(UserEntity(email = USER_INPUT_CORRECT)))
 
         viewModel.dispatch(Event.EmailUpdate(USER_INPUT_CORRECT))
 
@@ -91,7 +94,7 @@ class LoginViewModelTest {
 
     @Test
     fun loginEvent_Failed() = runTest {
-        `when`(repository.doAuth(any())).thenReturn(USER_INPUT_INCORRECT)
+        `when`(repository.get(UserCredentials(USER_INPUT_CORRECT))).thenReturn(any())
 
         viewModel.dispatch(Event.EmailUpdate(USER_INPUT_INCORRECT))
 
