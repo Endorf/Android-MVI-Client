@@ -3,11 +3,10 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
-    id 'kotlin-parcelize'
 }
 
 android {
-    namespace 'com.mvi.sharednotes.login'
+    namespace 'com.mvi.sharednotes.storage'
     compileSdk 33
 
     defaultConfig {
@@ -17,6 +16,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -52,39 +52,14 @@ hilt {
 }
 
 dependencies {
-    //region application modules
-    implementation projects.core.ui
-    implementation projects.core.network
-    implementation projects.core.storage
-    //endregion
     implementation general.androidx.core.ktx
+    implementation jetpackCompose.androidx.activity
     //region Hilt
     implementation general.hilt
-    implementation general.androidx.hilt.navigation
     kapt general.hilt.compiler
     //endregion
-    //region jetpack compose
-    implementation jetpackCompose.androidx.activity
-    implementation jetpackCompose.androidx.ui
-    implementation jetpackCompose.androidx.ui.tooling.preview
-    implementation jetpackCompose.androidx.material3
-    implementation jetpackCompose.androidx.lifecycle.runtime
-    implementation jetpackCompose.androidx.lifecycle.viewmodel
-    debugImplementation jetpackCompose.androidx.ui.tooling
-    debugImplementation jetpackCompose.androidx.runtime.ktx
-    debugImplementation jetpackCompose.androidx.ui.test.manifest
-    debugImplementation jetpackCompose.androidx.constraintlayout
-    debugImplementation jetpackCompose.androidx.runtime
-    //endregion
-    //region tests
     testImplementation tests.junit
-    testImplementation tests.mockk
-    testImplementation tests.mockito.core
-    testImplementation tests.kotlinx.coroutines.test
-    androidTestImplementation tests.junit
-    androidTestImplementation tests.junit.ktx
+    testImplementation tests.junit.ktx
     androidTestImplementation tests.androidx.junit
     androidTestImplementation tests.androidx.espresso.core
-    androidTestImplementation tests.androidx.compose.ui.test.junit4
-    //endregion
 }
