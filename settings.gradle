@@ -40,6 +40,13 @@ dependencyResolutionManagement {
             library('retrofit2', 'com.squareup.retrofit2:retrofit:2.9.0')
             library('retrofit2-converter-gson', 'com.squareup.retrofit2:converter-gson:2.9.0')
         }
+        storage {
+            //region room
+            library('androidx-room', 'androidx.room:room-runtime:2.5.0')
+            library('androidx-room-compiler', 'androidx.room:room-compiler:2.5.0')
+            //endregion
+            library('androidx-datastore-preferences', 'androidx.datastore:datastore-preferences:1.0.0')
+        }
         tests {
             library('junit', 'junit:junit:4.13.2')
             library('junit-ktx', 'androidx.test.ext:junit-ktx:1.1.5')
