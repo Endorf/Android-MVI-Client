@@ -124,6 +124,7 @@ fun EmailView(
         state.email,
         state.isLoading,
         state.hasError,
+        state.errorMessage,
         stringResource(id = R.string.login_email_hint),
         stringResource(id = R.string.login_email_hint),
         Icons.Default.Email,

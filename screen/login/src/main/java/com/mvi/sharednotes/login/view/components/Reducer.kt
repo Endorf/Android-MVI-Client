@@ -36,7 +36,8 @@ class Reducer @Inject constructor() {
             }
             is Action.Error -> state.value = state.value.copy(
                 isLoading = false,
-                hasError = true
+                hasError = true,
+                errorMessage = action.e?.message ?: ""
             )
             is Action.Input -> state.value = state.value.copy(
                 email = action.userInput,
