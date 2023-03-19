@@ -56,3 +56,4 @@ rootProject.name = "SharedNotes"
 include ':app'
 include ':screen:core'
 include ':screen:login'
+include ':core:network'
