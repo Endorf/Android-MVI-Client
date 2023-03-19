@@ -79,7 +79,11 @@ class LoginViewModelTest {
 
     @Test
     fun loginEvent_Success() = runTest {
-        `when`(repository.get(UserCredentials(USER_INPUT_CORRECT))).thenReturn(flowOf(UserEntity(email = USER_INPUT_CORRECT)))
+        `when`(
+            repository.get(UserCredentials(USER_INPUT_CORRECT))
+        ).thenReturn(
+            flowOf(UserEntity(email = USER_INPUT_CORRECT))
+        )
 
         viewModel.dispatch(Event.EmailUpdate(USER_INPUT_CORRECT))
 

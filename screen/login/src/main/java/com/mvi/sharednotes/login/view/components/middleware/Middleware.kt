@@ -6,7 +6,10 @@ import com.mvi.sharednotes.login.view.attributes.Event
 import com.mvi.sharednotes.login.view.attributes.Action
 import com.mvi.sharednotes.login.view.attributes.State
 import com.mvi.sharednotes.login.view.entity.UserCredentials
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.FlowCollector
 import javax.inject.Inject
 
 class Middleware @Inject constructor(
