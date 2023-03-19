@@ -19,5 +19,4 @@ class RemoteUserDataStoreImpl @Inject constructor(
         val remoteUser = api.get(user.id)
         emit(remoteUser)
     }
-
 }
