@@ -3,7 +3,7 @@ package com.mvi.sharednotes.login.di
 import com.mvi.sharednotes.login.data.FakeRepository
 import com.mvi.sharednotes.login.view.components.Reducer
 import com.mvi.sharednotes.login.view.components.middleware.LoggerMiddleware
-import com.mvi.sharednotes.login.view.components.middleware.MainMiddleware
+import com.mvi.sharednotes.login.view.components.middleware.Middleware
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +19,7 @@ class LoginModule {
     fun bindMainMiddleware(
         repository: FakeRepository,
         logger: LoggerMiddleware
-    ) = MainMiddleware(repository, logger)
+    ) = Middleware(repository, logger)
 
     @Provides
     @ViewModelScoped

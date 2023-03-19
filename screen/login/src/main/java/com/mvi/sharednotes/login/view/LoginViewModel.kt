@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.mvi.sharednotes.login.view.attributes.Effect
 import com.mvi.sharednotes.login.view.attributes.Event
 import com.mvi.sharednotes.login.view.attributes.State
-import com.mvi.sharednotes.login.view.components.middleware.MainMiddleware
+import com.mvi.sharednotes.login.view.components.middleware.Middleware
 import com.mvi.sharednotes.login.view.components.Reducer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val reducer: Reducer,
-    private val middleware: MainMiddleware
+    private val middleware: Middleware
 ) : ViewModel() {
 
     private val _effect: MutableStateFlow<Effect> = MutableStateFlow(Effect.create())
