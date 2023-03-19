@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -72,6 +73,7 @@ dependencies {
     debugImplementation jetpackCompose.androidx.runtime.ktx
     debugImplementation jetpackCompose.androidx.ui.test.manifest
     debugImplementation jetpackCompose.androidx.constraintlayout
+    debugImplementation jetpackCompose.androidx.runtime
     //endregion
     //region tests
     testImplementation tests.junit
