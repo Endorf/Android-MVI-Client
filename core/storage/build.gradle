@@ -63,6 +63,7 @@ dependencies {
     //endregion
     //region storage
     implementation storage.androidx.room
+    implementation storage.androidx.room.ktx
     kapt storage.androidx.room.compiler
     implementation storage.androidx.datastore.preferences
     //endregion
