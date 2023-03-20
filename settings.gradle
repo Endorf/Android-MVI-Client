@@ -52,7 +52,7 @@ dependencyResolutionManagement {
             library('junit', 'junit:junit:4.13.2')
             library('junit-ktx', 'androidx.test.ext:junit-ktx:1.1.5')
             library('androidx-junit', 'androidx.test.ext:junit:1.1.5')
-            library('mockk', 'io.mockk:mockk:1.10.2')
+            library('mockk', 'io.mockk:mockk:1.13.4')
             library('mockito-core', 'org.mockito:mockito-core:5.2.0')
             library('kotlinx-coroutines-test', 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4')
             library('androidx-espresso-core', 'androidx.test.espresso:espresso-core:3.5.1')
