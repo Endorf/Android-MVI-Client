@@ -23,7 +23,7 @@ dependencyResolutionManagement {
         jetpackCompose {
             library('androidx-activity', 'androidx.activity:activity-compose:1.6.1')
             library('androidx-ui', 'androidx.compose.ui:ui:1.3.3')
-            library('androidx-ui-tooling-preview', 'androidx.compose.ui:ui-tooling-preview:1.3.3')
+            library('androidx-ui-tooling-preview', 'androidx.compose.ui:ui-tooling-preview:1.4.0')
             library('androidx-material3', 'androidx.compose.material3:material3:1.0.1')
             library('androidx-ui-tooling', 'androidx.compose.ui:ui-tooling:1.3.3')
             library('androidx-ui-test-manifest', 'androidx.compose.ui:ui-test-manifest:1.3.3')
