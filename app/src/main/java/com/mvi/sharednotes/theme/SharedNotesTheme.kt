@@ -89,7 +89,7 @@ internal val DarkColorScheme = darkColorScheme(
 )
 
 internal val LightColorScheme = lightColorScheme(
-    primary = Blue40,
+    primary = ExperimentalColorAccent,
     onPrimary = Color.White,
     secondary = DarkBlue40,
     primaryContainer = Blue90,

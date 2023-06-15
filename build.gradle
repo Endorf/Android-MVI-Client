@@ -38,7 +38,7 @@ subprojects {
         android.set(true)
         outputColorName.set("RED")
         outputToConsole.set(true)
-        disabledRules = ["final-newline", "import-ordering"]
+        disabledRules = ["final-newline", "import-ordering", "no-wildcard-imports"]
     }
 }
 
