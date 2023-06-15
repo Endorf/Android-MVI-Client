@@ -63,88 +63,90 @@ fun LoginScreen(
     }
     val onLoginClickListener: () -> Unit = { viewModel.dispatch(Event.Login) }
 
-    LoginLayout(state, textChangeListener, onLoginClickListener)
-}
-
-@Composable
-fun LoginLayout(
-    state: State,
-    textChangeListener: (String) -> Unit,
-    onLoginClickListener: () -> Unit
-) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
             .background(RadialShaderBrush)
     ) {
-    Card(
-        shape = RoundedCornerShape(ROUNDED_CORNER_SHAPE.dp),
-        modifier = Modifier
-            .padding(CARD_PADDING.dp)
-            .fillMaxWidth()
-    ) {
-        ConstraintLayout(
+        Card(
+            shape = RoundedCornerShape(ROUNDED_CORNER_SHAPE.dp),
             modifier = Modifier
-                .heightIn(min = LOGIN_CONTAINER_HEIGHT.dp)
-                .verticalScroll(rememberScrollState())
+                .padding(CARD_PADDING.dp)
+                .fillMaxWidth()
         ) {
-            val (title, text, button, progress) = createRefs()
-
-            Text(
-                modifier = Modifier
-                    .constrainAs(title) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
-                    .fillMaxWidth()
-                    .padding(HORIZONTAL_PADDING.dp, TITLE_VERTICAL_PADDING.dp),
-                text = stringResource(id = R.string.login_title_hint),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.titleLarge,
-            )
-
-            EmailView(
-                state,
-                textChangeListener,
-                onLoginClickListener,
-                Modifier
-                    .constrainAs(text) {
-                        top.linkTo(button.top, LOGIN_EMAIL_MARGIN.dp)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
-                    .fillMaxWidth()
-                    .padding(HORIZONTAL_PADDING.dp, VIEW_VERTICAL_PADDING.dp)
-                    .testTag(EMAIL_TAG)
-            )
-
-            ProgressIndicator(
-                state.isLoading,
-                Modifier
-                    .constrainAs(progress) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
-                    .fillMaxWidth()
-            )
-
-            LoginButton(
-                state.isLoading,
-                onLoginClickListener,
-                Modifier
-                    .constrainAs(button) {
-                        top.linkTo(title.bottom, LOGIN_BUTTON_TOP_MARGIN.dp)
-                        bottom.linkTo(parent.bottom)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
-                    .fillMaxWidth()
-                    .padding(HORIZONTAL_PADDING.dp, VIEW_VERTICAL_PADDING.dp)
-                    .testTag(LOGIN_BUTTON_TAG)
-            )
+            LoginLayout(state, textChangeListener, onLoginClickListener)
         }
-    }}
+    }
+
+}
+
+@Composable
+@Suppress("DestructuringDeclarationWithTooManyEntries", "LongMethod")
+fun LoginLayout(
+    state: State,
+    textChangeListener: (String) -> Unit,
+    onLoginClickListener: () -> Unit
+) {
+    ConstraintLayout(
+        modifier = Modifier
+            .heightIn(min = LOGIN_CONTAINER_HEIGHT.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
+        val (title, text, button, progress) = createRefs()
+        Text(
+            modifier = Modifier
+                .constrainAs(title) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+                .fillMaxWidth()
+                .padding(HORIZONTAL_PADDING.dp, TITLE_VERTICAL_PADDING.dp),
+            text = stringResource(id = R.string.login_title_hint),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.titleLarge
+        )
+
+        EmailView(
+            state,
+            textChangeListener,
+            onLoginClickListener,
+            Modifier
+                .constrainAs(text) {
+                    top.linkTo(button.top, LOGIN_EMAIL_MARGIN.dp)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+                .fillMaxWidth()
+                .padding(HORIZONTAL_PADDING.dp, VIEW_VERTICAL_PADDING.dp)
+                .testTag(EMAIL_TAG)
+        )
+
+        ProgressIndicator(
+            state.isLoading,
+            Modifier
+                .constrainAs(progress) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+                .fillMaxWidth()
+        )
+
+        LoginButton(
+            state.isLoading,
+            onLoginClickListener,
+            Modifier
+                .constrainAs(button) {
+                    top.linkTo(title.bottom, LOGIN_BUTTON_TOP_MARGIN.dp)
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+                .fillMaxWidth()
+                .padding(HORIZONTAL_PADDING.dp, VIEW_VERTICAL_PADDING.dp)
+                .testTag(LOGIN_BUTTON_TAG)
+        )
+    }
 }

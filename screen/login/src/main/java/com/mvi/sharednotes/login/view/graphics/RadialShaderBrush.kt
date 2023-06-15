@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 package com.mvi.sharednotes.login.view.graphics
 
 import androidx.compose.ui.geometry.Size
@@ -7,7 +9,7 @@ import androidx.compose.ui.graphics.RadialGradientShader
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
 
-object RadialShaderBrush: ShaderBrush() {
+object RadialShaderBrush : ShaderBrush() {
     override fun createShader(size: Size): Shader {
         val biggerDimension = maxOf(size.height, size.width)
         return RadialGradientShader(
