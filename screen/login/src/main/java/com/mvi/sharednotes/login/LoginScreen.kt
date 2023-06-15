@@ -78,7 +78,6 @@ fun LoginScreen(
             LoginLayout(state, textChangeListener, onLoginClickListener)
         }
     }
-
 }
 
 @Composable
