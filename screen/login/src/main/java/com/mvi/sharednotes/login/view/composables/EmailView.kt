@@ -16,7 +16,6 @@ fun EmailView(
     onDoneClickListener: () -> Unit,
     modifier: Modifier
 ) {
-
     BaseOutlinedTextField(
         state.email,
         state.isLoading,
