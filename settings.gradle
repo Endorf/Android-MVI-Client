@@ -31,7 +31,7 @@ dependencyResolutionManagement {
             library('androidx-ui-test-manifest', 'androidx.compose.ui:ui-test-manifest:1.4.3')
             library('androidx-constraintlayout', 'androidx.constraintlayout:constraintlayout-compose:1.0.1')
             library('androidx-lifecycle-viewmodel', 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0')
-            library('androidx-lifecycle-runtime', 'androidx.lifecycle:lifecycle-runtime-compose:2.6.0')
+            library('androidx-lifecycle-runtime', 'androidx.lifecycle:lifecycle-runtime-compose:2.6.1')
             library('androidx-runtime', 'androidx.compose.runtime:runtime:1.3.3')
         }
         network {
@@ -44,7 +44,7 @@ dependencyResolutionManagement {
             //region room
             library('androidx-room', 'androidx.room:room-runtime:2.5.0')
             library('androidx-room-ktx', 'androidx.room:room-ktx:2.5.0')
-            library('androidx-room-compiler', 'androidx.room:room-compiler:2.5.0')
+            library('androidx-room-compiler', 'androidx.room:room-compiler:2.5.1')
             //endregion
             library('androidx-datastore-preferences', 'androidx.datastore:datastore-preferences:1.0.0')
         }
