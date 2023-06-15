@@ -1,4 +1,4 @@
-package com.mvi.sharednotes.login.view.composables
+package com.mvi.sharednotes.notes.view.composables
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

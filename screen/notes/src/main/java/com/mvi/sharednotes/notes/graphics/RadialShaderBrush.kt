@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.mvi.sharednotes.login.view.graphics
+package com.mvi.sharednotes.notes.graphics
 
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.center
