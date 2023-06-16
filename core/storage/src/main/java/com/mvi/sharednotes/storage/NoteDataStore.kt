@@ -1,11 +1,10 @@
 package com.mvi.sharednotes.storage
 
 import com.mvi.sharednotes.storage.db.entity.NoteEntity
-import kotlinx.coroutines.flow.Flow
 
 interface NoteDataStore {
 
-    fun get(): Flow<NoteEntity>
+    fun get(): List<NoteEntity>
 
     fun create(note: NoteEntity)
 

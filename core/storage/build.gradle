@@ -16,7 +16,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField("int", "DB_VERSION", "1")
+        buildConfigField("int", "DB_VERSION", "2")
         buildConfigField("String", "DB_NAME", "\"${getLocalProperty("DB_NAME")}\"")
     }
 

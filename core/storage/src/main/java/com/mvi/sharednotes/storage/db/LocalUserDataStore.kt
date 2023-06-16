@@ -12,8 +12,10 @@ class LocalUserDataStore @Inject constructor(
 
     override fun create(user: UserEntity): Unit = userDao.insert(user)
 
+    // TODO: remove flow
     override fun get(user: UserEntity): Flow<UserEntity> = userDao.read(user.email)
 
+    // TODO: remove flow
     override fun get(): Flow<UserEntity> {
         TODO("return all users")
     }

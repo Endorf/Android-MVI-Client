@@ -6,13 +6,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "note")
 data class NoteEntity(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "row_id")
-    val id: Int = 0,
-    @ColumnInfo(name = "post_id")
-    val postId: Long,
-    @ColumnInfo(name = "user_id")
-    val userId: Long,
+    val postId: Int,
+    val username: String,
+    val tag: String,
     val title: String?,
     val body: String?
 )

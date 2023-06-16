@@ -6,6 +6,7 @@ import com.mvi.sharednotes.storage.NoteDataStore
 import com.mvi.sharednotes.storage.UserDataStore
 import com.mvi.sharednotes.storage.db.LocalNoteDataStore
 import com.mvi.sharednotes.storage.db.LocalUserDataStore
+import com.mvi.sharednotes.storage.db.MIGRATION_2_3
 import com.mvi.sharednotes.storage.db.SharedNotesDatabase
 import com.mvi.sharednotes.storage.db.dao.NoteDao
 import com.mvi.sharednotes.storage.db.dao.UserDao
@@ -26,7 +27,9 @@ class StorageModule {
             context,
             SharedNotesDatabase::class.java,
             SharedNotesDatabase.DB_NAME
-        ).build()
+        )
+            .addMigrations(MIGRATION_2_3)
+            .build()
     }
 
     @Provides
@@ -34,6 +37,9 @@ class StorageModule {
 
     @Provides
     fun provideUserLocalDataStore(userDao: UserDao): UserDataStore = LocalUserDataStore(userDao)
+
+    @Provides
+    fun provideNoteDao(appDatabase: SharedNotesDatabase): NoteDao = appDatabase.noteDao()
 
     @Provides
     fun provideNoteLocalDataStore(noteDao: NoteDao): NoteDataStore = LocalNoteDataStore(noteDao)
