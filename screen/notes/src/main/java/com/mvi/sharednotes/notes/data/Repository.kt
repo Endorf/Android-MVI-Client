@@ -1,11 +1,11 @@
 package com.mvi.sharednotes.notes.data
 
-import com.mvi.sharednotes.network.data.api.user.entity.PostEntity
+import com.mvi.sharednotes.notes.view.entity.Note
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
-    suspend fun get(): Flow<List<PostEntity>>
+    suspend fun get(): Flow<List<Note>>
 
-    suspend fun get(id: Long): Flow<PostEntity>
+    suspend fun get(id: Long): Flow<Note>
 }

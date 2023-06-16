@@ -4,40 +4,64 @@ import com.mvi.sharednotes.network.data.api.user.entity.PostEntity
 import com.mvi.sharednotes.notes.view.entity.Note
 import com.mvi.sharednotes.storage.db.entity.NoteEntity
 
-fun PostEntity.toNotes(): Note =
+fun PostEntity.toNote(): Note =
     Note(
         id,
-        userId,
-        "",
-        "",
-        "",
+        "Unknown",  // TODO: fill on Backend
+        "noname",
         title,
         body
     )
+
+fun List<PostEntity>.toNotes(): List<Note> = map { it.toNote() }
 
 fun Note.toPostEntity(): PostEntity =
     PostEntity(
         id,
-        userId,
         title,
-        description
+        description,
+        username = author,
+        tag = tag
     )
 
-fun Note.toNotes(): NoteEntity =
+fun Note.toNoteEntity(): NoteEntity =
     NoteEntity(
         postId = id,
-        userId = userId,
         title = title,
-        body = description
+        body = description,
+        username = author,
+        tag = tag
     )
 
-fun NoteEntity.toNotes(): Note =
+fun List<Note>.toNoteEntities() = map { it.toNoteEntity() }
+
+fun NoteEntity.toNote(): Note =
     Note(
         postId,
-        userId,
-        "",
-        "",
-        "",
-        title,
-        body
+        username,
+        tag,
+        title = title,
+        description = body
     )
+
+fun PostEntity.toNoteEntity(): NoteEntity =
+    NoteEntity(
+        postId = id,
+        title = title,
+        body = body,
+        username = username,
+        tag = tag
+    )
+
+fun NoteEntity.toPostEntity(): PostEntity =
+    PostEntity(
+        id = postId,
+        title = title,
+        body = body,
+        username = username,
+        tag = tag
+    )
+
+fun List<NoteEntity>.toPostEntities(): List<PostEntity> = map {
+    it.toPostEntity()
+}

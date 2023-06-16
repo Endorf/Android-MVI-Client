@@ -23,6 +23,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,6 +42,7 @@ private const val ROUNDED_CORNER_SHAPE = 8
 private const val PADDING = 8
 private const val TITLE_HORIZONTAL_PADDING = 0
 private const val CARD_PADDING = 4
+private const val DIVIDER_HEIGHT = 1
 
 @Composable
 fun NotesScreen(
@@ -103,16 +105,32 @@ fun ItemRow(note: Note) {
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.titleMedium
                     )
-                    Text(note.tag)
+                    Box(
+                        Modifier
+                            .clip(shape = RoundedCornerShape(6.dp))
+                            .background(color = MaterialTheme.colorScheme.primaryContainer)
+                    ) {
+                        Text(
+                            note.tag,
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.padding(6.dp, 0.dp)
+                        )
+                    }
                 }
                 Text(
-                    note.title?:"",
+                    note.title ?: "",
                     Modifier.padding(TITLE_HORIZONTAL_PADDING.dp, PADDING.dp),
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Divider(
+                    color = MaterialTheme.colorScheme.outline,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .width(DIVIDER_HEIGHT.dp)
                 )
                 Text(
-                    note.description?:"",
-                    style = MaterialTheme.typography.bodyMedium,
+                    note.description ?: "",
+                    style = MaterialTheme.typography.bodySmall,
                     fontStyle = FontStyle.Italic
                 )
             }
