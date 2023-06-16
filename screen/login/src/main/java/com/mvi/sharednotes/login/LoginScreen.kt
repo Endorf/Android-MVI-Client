@@ -26,7 +26,7 @@ import com.mvi.sharednotes.login.view.attributes.State
 import com.mvi.sharednotes.login.view.composables.EmailView
 import com.mvi.sharednotes.login.view.composables.LoginButton
 import com.mvi.sharednotes.login.view.composables.ProgressIndicator
-import com.mvi.sharednotes.login.view.graphics.RadialShaderBrush
+import com.mvi.sharednotes.ui.core.graphics.RadialShaderBrush
 
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 internal const val EMAIL_TAG = "email_field"

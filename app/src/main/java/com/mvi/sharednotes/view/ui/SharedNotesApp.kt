@@ -29,6 +29,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.mvi.sharednotes.R
 import com.mvi.sharednotes.login.LoginScreen
+import com.mvi.sharednotes.notes.NotesScreen
 import com.mvi.sharednotes.theme.TopAppBarColor
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -77,7 +78,7 @@ fun SharedNotesNavHost(
             enterTransition = { slideInHorizontally(initialOffsetX = { INITIAL_OFFSET_X }) }
         ) {
             composable(Route.LOGIN.name) { LoginScreen(hiltViewModel(), onNoteListEnter) }
-            composable(Route.HOME.name) { Text(text = "HOME") }
+            composable(Route.HOME.name) { NotesScreen(hiltViewModel()) }
         }
     }
 }

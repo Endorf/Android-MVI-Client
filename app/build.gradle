@@ -59,6 +59,7 @@ hilt {
 dependencies {
     //region application modules
     implementation projects.screen.login
+    implementation projects.screen.notes
     //endregion
     //region Hilt
     implementation general.hilt

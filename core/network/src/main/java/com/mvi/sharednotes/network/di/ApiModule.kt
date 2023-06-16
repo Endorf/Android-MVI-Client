@@ -1,5 +1,6 @@
 package com.mvi.sharednotes.network.di
 
+import com.mvi.sharednotes.network.data.api.user.PostApi
 import com.mvi.sharednotes.network.data.api.user.UserApi
 import dagger.Module
 import dagger.Provides
@@ -13,4 +14,7 @@ class ApiModule {
 
     @Provides
     fun provideUserApi(retrofit: Retrofit): UserApi = retrofit.create(UserApi::class.java)
+
+    @Provides
+    fun providePostApi(retrofit: Retrofit): PostApi = retrofit.create(PostApi::class.java)
 }

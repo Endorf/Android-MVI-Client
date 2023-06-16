@@ -4,7 +4,7 @@ import com.mvi.sharednotes.storage.db.entity.UserEntity
 
 fun UserEntity.toUserEntity() =
     com.mvi.sharednotes.network.data.api.user.entity.UserEntity(
-        id,
+        userId,
         email,
         userName,
         name
