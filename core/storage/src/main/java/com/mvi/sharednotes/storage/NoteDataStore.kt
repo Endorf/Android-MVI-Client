@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface NoteDataStore {
 
-    fun get(note: NoteEntity): Flow<NoteEntity>
+    fun get(): Flow<NoteEntity>
 
     fun create(note: NoteEntity)
 

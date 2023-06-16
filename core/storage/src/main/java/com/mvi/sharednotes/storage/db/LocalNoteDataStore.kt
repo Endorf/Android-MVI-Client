@@ -10,7 +10,7 @@ class LocalNoteDataStore @Inject constructor(
     private val dao: NoteDao
 ) : NoteDataStore {
 
-    override fun get(note: NoteEntity): Flow<NoteEntity> = dao.read()
+    override fun get(): Flow<NoteEntity> = dao.read()
 
     override fun create(note: NoteEntity): Unit = dao.insert(note)
 
