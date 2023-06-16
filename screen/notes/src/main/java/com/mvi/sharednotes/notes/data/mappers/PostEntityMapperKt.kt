@@ -1,10 +1,10 @@
 package com.mvi.sharednotes.notes.data.mappers
 
 import com.mvi.sharednotes.network.data.api.user.entity.PostEntity
-import com.mvi.sharednotes.notes.view.entity.Notes
+import com.mvi.sharednotes.notes.view.entity.Note
 
-fun PostEntity.toNotes(): Notes =
-    Notes(
+fun PostEntity.toNotes(): Note =
+    Note(
         id,
         userId,
         "",
@@ -14,7 +14,7 @@ fun PostEntity.toNotes(): Notes =
         body
     )
 
-fun Notes.toPostEntity(): PostEntity =
+fun Note.toPostEntity(): PostEntity =
     PostEntity(
         id,
         userId,

@@ -1,6 +1,6 @@
 package com.mvi.sharednotes.notes.attributes
 
-import com.mvi.sharednotes.notes.view.entity.Notes
+import com.mvi.sharednotes.notes.view.entity.Note
 
 sealed interface Action {
 
@@ -9,6 +9,6 @@ sealed interface Action {
     data class Error(val e: Throwable? = null) : Action
 
     data class ShowNotes(
-        val notes: List<Notes>
+        val notes: List<Note>
     ) : Action
 }

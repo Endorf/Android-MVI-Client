@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class Notes(
+class Note(
     val id: Long,
     val userId: Long,
     val author:String,

@@ -17,7 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mvi.sharednotes.notes.attributes.Event
-import com.mvi.sharednotes.notes.view.entity.Notes
+import com.mvi.sharednotes.notes.view.entity.Note
 import com.mvi.sharednotes.notes.view.NotesViewModel
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -66,7 +66,7 @@ fun NotesScreen(
 }
 
 @Composable
-fun NotesList(notes: List<Notes>) {
+fun NotesList(notes: List<Note>) {
     LazyColumn {
         items(notes) { note ->
             ItemRow(note)
@@ -75,7 +75,7 @@ fun NotesList(notes: List<Notes>) {
 }
 
 @Composable
-fun ItemRow(note: Notes) {
+fun ItemRow(note: Note) {
     Card(
         shape = RoundedCornerShape(ROUNDED_CORNER_SHAPE.dp),
         modifier = Modifier
