@@ -13,7 +13,7 @@ import com.mvi.sharednotes.storage.db.entity.UserEntity
 @Database(
     version = BuildConfig.DB_VERSION,
     entities = [UserEntity::class, NoteEntity::class],
-    exportSchema = true,
+    exportSchema = true
 )
 abstract class SharedNotesDatabase : RoomDatabase() {
 
@@ -29,13 +29,11 @@ abstract class SharedNotesDatabase : RoomDatabase() {
 val MIGRATION_2_3 = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL(
-            "CREATE TABLE `note` (" +
-                    "`row_id` INTEGER NOT NULL, " +
-                    "`username` TEXT NOT NULL, " +
-                    "`tag` TEXT NOT NULL, " +
-                    "`title` TEXT, " +
-                    "`body` TEXT, " +
-                    "PRIMARY KEY(`row_id`))"
+            "CREATE TABLE `note` (`row_id` INTEGER NOT NULL, " +
+                "`username` TEXT NOT NULL, " +
+                "`tag` TEXT NOT NULL, " +
+                "`title` TEXT, " +
+                "`body` TEXT, PRIMARY KEY(`row_id`))"
         )
     }
 }

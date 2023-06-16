@@ -15,6 +15,7 @@ class Reducer {
         reduce(state, effect, action)
     }
 
+    @Suppress("UnusedPrivateMember")
     private fun reduce(
         state: MutableStateFlow<State>,
         effect: MutableStateFlow<Effect>,

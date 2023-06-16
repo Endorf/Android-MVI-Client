@@ -9,13 +9,14 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class Middleware @Inject constructor(
-    private val repository: Repository,
+    private val repository: Repository
 ) {
 
     suspend fun dispatch(state: State, event: Event): Flow<Action> = when (event) {
         is Event.GetNotes -> getNotes(state)
     }
 
+    @Suppress("UnusedPrivateMember")
     private suspend fun getNotes(state: State): Flow<Action> {
         return flow {
             emit(Action.Loading)

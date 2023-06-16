@@ -9,5 +9,5 @@ data class PostEntity(
     var title: String? = null,
     val body: String? = null,
     val username: String,
-    val tag: String,
+    val tag: String
 ) : Parcelable
