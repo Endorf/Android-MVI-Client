@@ -34,7 +34,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.mvi.sharednotes.notes.graphics.RadialShaderBrush
+import com.mvi.sharednotes.ui.core.graphics.RadialShaderBrush
 import com.mvi.sharednotes.notes.view.composables.ProgressIndicator
 
 private const val IMAGE_SIZE = 45

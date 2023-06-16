@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.mvi.sharednotes.login.view.graphics
+package com.mvi.sharednotes.ui.core.graphics
 
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.center
@@ -9,7 +9,6 @@ import androidx.compose.ui.graphics.RadialGradientShader
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
 
-// TODO: move to separate module (ui)
 object RadialShaderBrush : ShaderBrush() {
     override fun createShader(size: Size): Shader {
         val biggerDimension = maxOf(size.height, size.width)
