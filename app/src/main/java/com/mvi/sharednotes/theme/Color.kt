@@ -4,8 +4,9 @@ package com.mvi.sharednotes.theme
 
 import androidx.compose.ui.graphics.Color
 
-internal val ExperimentalColorPrimary = Color(0xFF001F28)
-internal val ExperimentalColorSecondary = Color(0xFF003544)
+internal val ExperimentalColorPrimary = Color(0xffdc2430)
+internal val ExperimentalColorPrimaryLite = Color(0xFFDA4851)
+internal val ExperimentalColorSecondary = Color(0xffffd89b)
 internal val ExperimentalColorAccent = Color(0xff2872fc)
 
 internal val Blue10 = Color(0xFF001F28)
