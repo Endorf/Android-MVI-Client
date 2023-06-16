@@ -36,10 +36,9 @@ class NotesRepository @Inject constructor(
         return remoteDataStore.read(id)
             .map { it.toNote() }
             .onEach { remoteNotes ->
-                if (remoteNotes !in local)
-                    remoteNotes.toNoteEntity()
-                        .let { localDataStore.create(it) }
+                if (remoteNotes !in local) {
+                    remoteNotes.toNoteEntity().let { localDataStore.create(it) }
+                }
             }
     }
-
 }

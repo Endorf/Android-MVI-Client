@@ -15,9 +15,7 @@ class NotesViewModelModule {
 
     @Provides
     @ViewModelScoped
-    fun bindMainMiddleware(
-        repository: Repository,
-    ) = Middleware(repository)
+    fun bindMainMiddleware(repository: Repository) = Middleware(repository)
 
     @Provides
     @ViewModelScoped

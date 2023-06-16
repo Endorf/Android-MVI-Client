@@ -7,7 +7,7 @@ import com.mvi.sharednotes.storage.db.entity.NoteEntity
 fun PostEntity.toNote(): Note =
     Note(
         id,
-        "Unknown",  // TODO: fill on Backend
+        "Unknown", // TODO: fill on Backend
         "noname",
         title,
         body

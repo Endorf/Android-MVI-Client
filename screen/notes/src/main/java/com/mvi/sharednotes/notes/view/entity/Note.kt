@@ -6,9 +6,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class Note(
     val id: Int,
-    val author:String,
-    val tag:String,
-    val title:String?,
-    val description:String?,
-    val icon:String? = null
+    val author: String,
+    val tag: String,
+    val title: String?,
+    val description: String?,
+    val icon: String? = null
 ) : Parcelable

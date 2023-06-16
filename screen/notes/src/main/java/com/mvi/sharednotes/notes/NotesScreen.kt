@@ -48,7 +48,6 @@ private const val DIVIDER_HEIGHT = 1
 private const val NO_PADDING = 0
 private const val BACKGROUND_CARD_ALPHA = 0.9f
 
-
 @Composable
 fun NotesScreen(
     viewModel: NotesViewModel
@@ -105,7 +104,6 @@ fun ItemRow(note: Note) {
             ) {
                 UserBlock(note.author, note.tag)
                 ContentBlock(note.title ?: "", note.description ?: "")
-
             }
         }
     }
