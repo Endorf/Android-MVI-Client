@@ -17,7 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mvi.sharednotes.notes.attributes.Event
-import com.mvi.sharednotes.notes.entity.Notes
+import com.mvi.sharednotes.notes.view.entity.Notes
 import com.mvi.sharednotes.notes.view.NotesViewModel
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -106,12 +106,12 @@ fun ItemRow(note: Notes) {
                     Text(note.tag)
                 }
                 Text(
-                    note.title,
+                    note.title?:"",
                     Modifier.padding(TITLE_HORIZONTAL_PADDING.dp, PADDING.dp),
                     style = MaterialTheme.typography.titleLarge
                 )
                 Text(
-                    note.description,
+                    note.description?:"",
                     style = MaterialTheme.typography.bodyMedium,
                     fontStyle = FontStyle.Italic
                 )

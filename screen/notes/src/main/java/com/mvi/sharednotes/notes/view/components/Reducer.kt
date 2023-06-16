@@ -3,7 +3,6 @@ package com.mvi.sharednotes.notes.view.components
 import com.mvi.sharednotes.notes.attributes.Action
 import com.mvi.sharednotes.notes.attributes.Effect
 import com.mvi.sharednotes.notes.attributes.State
-import com.mvi.sharednotes.notes.entity.Notes
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class Reducer {

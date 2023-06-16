@@ -1,6 +1,6 @@
 package com.mvi.sharednotes.notes.attributes
 
-import com.mvi.sharednotes.notes.entity.Notes
+import com.mvi.sharednotes.notes.view.entity.Notes
 
 data class State(
     val isLoading: Boolean,

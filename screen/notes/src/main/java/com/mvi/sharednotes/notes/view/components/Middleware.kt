@@ -4,9 +4,10 @@ import com.mvi.sharednotes.notes.attributes.Action
 import com.mvi.sharednotes.notes.attributes.Event
 import com.mvi.sharednotes.notes.attributes.State
 import com.mvi.sharednotes.notes.data.Repository
-import kotlinx.coroutines.delay
+import com.mvi.sharednotes.notes.data.mappers.toNotes
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class Middleware @Inject constructor(
@@ -21,9 +22,9 @@ class Middleware @Inject constructor(
         return flow {
             emit(Action.Loading)
 
-            delay(1000L)
-
-            repository.get().collect { notes->
+            repository.get().map { notes ->
+                notes.map { it.toNotes() }
+            }.collect { notes ->
                 emit(Action.ShowNotes(notes))
             }
         }

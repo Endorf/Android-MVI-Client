@@ -1,4 +1,4 @@
-package com.mvi.sharednotes.notes.entity
+package com.mvi.sharednotes.notes.view.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -6,9 +6,10 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class Notes(
     val id: Long,
+    val userId: Long,
     val author:String,
     val tag:String,
     val icon:String,
-    val title:String,
-    val description:String
+    val title:String?,
+    val description:String?
 ) : Parcelable
