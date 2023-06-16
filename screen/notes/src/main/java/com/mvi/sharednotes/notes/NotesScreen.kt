@@ -39,10 +39,15 @@ import com.mvi.sharednotes.notes.view.composables.ProgressIndicator
 
 private const val IMAGE_SIZE = 45
 private const val ROUNDED_CORNER_SHAPE = 8
+private const val ROUNDED_CORNER_BOX = 6
+private const val HORIZONTAL_TEXT_PADDING = 6
 private const val PADDING = 8
 private const val TITLE_HORIZONTAL_PADDING = 0
 private const val CARD_PADDING = 4
 private const val DIVIDER_HEIGHT = 1
+private const val NO_PADDING = 0
+private const val BACKGROUND_CARD_ALPHA = 0.9f
+
 
 @Composable
 fun NotesScreen(
@@ -83,7 +88,7 @@ fun ItemRow(note: Note) {
         modifier = Modifier
             .padding(CARD_PADDING.dp)
             .fillMaxWidth()
-            .alpha(0.9f)
+            .alpha(BACKGROUND_CARD_ALPHA)
     ) {
         Row(verticalAlignment = Alignment.Top) {
             Image(
@@ -96,44 +101,56 @@ fun ItemRow(note: Note) {
                     .clip(CircleShape)
             )
             Column(
-                modifier = Modifier.padding(0.dp, PADDING.dp, PADDING.dp, PADDING.dp)
+                modifier = Modifier.padding(NO_PADDING.dp, PADDING.dp, PADDING.dp, PADDING.dp)
             ) {
-                Row(verticalAlignment = Alignment.Bottom) {
-                    Text(
-                        note.author,
-                        Modifier.padding(0.dp, 0.dp, PADDING.dp, 0.dp),
-                        fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    Box(
-                        Modifier
-                            .clip(shape = RoundedCornerShape(6.dp))
-                            .background(color = MaterialTheme.colorScheme.primaryContainer)
-                    ) {
-                        Text(
-                            note.tag,
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            modifier = Modifier.padding(6.dp, 0.dp)
-                        )
-                    }
-                }
-                Text(
-                    note.title ?: "",
-                    Modifier.padding(TITLE_HORIZONTAL_PADDING.dp, PADDING.dp),
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Divider(
-                    color = MaterialTheme.colorScheme.outline,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .width(DIVIDER_HEIGHT.dp)
-                )
-                Text(
-                    note.description ?: "",
-                    style = MaterialTheme.typography.bodySmall,
-                    fontStyle = FontStyle.Italic
-                )
+                UserBlock(note.author, note.tag)
+                ContentBlock(note.title ?: "", note.description ?: "")
+
             }
         }
     }
+}
+
+@Composable
+fun UserBlock(author: String, tag: String) {
+    Row(verticalAlignment = Alignment.Bottom) {
+        Text(
+            author,
+            Modifier.padding(NO_PADDING.dp, NO_PADDING.dp, PADDING.dp, NO_PADDING.dp),
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.labelLarge
+        )
+        Box(
+            Modifier
+                .clip(shape = RoundedCornerShape(ROUNDED_CORNER_BOX.dp))
+                .background(color = MaterialTheme.colorScheme.primaryContainer)
+        ) {
+            Text(
+                tag,
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onPrimary,
+                modifier = Modifier.padding(HORIZONTAL_TEXT_PADDING.dp, NO_PADDING.dp)
+            )
+        }
+    }
+}
+
+@Composable
+fun ContentBlock(title: String, description: String) {
+    Text(
+        title ?: "",
+        Modifier.padding(TITLE_HORIZONTAL_PADDING.dp, PADDING.dp),
+        style = MaterialTheme.typography.titleMedium
+    )
+    Divider(
+        color = MaterialTheme.colorScheme.outline,
+        modifier = Modifier
+            .fillMaxWidth()
+            .width(DIVIDER_HEIGHT.dp)
+    )
+    Text(
+        description,
+        style = MaterialTheme.typography.bodySmall,
+        fontStyle = FontStyle.Italic
+    )
 }
