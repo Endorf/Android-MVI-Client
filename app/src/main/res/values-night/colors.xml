@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="windowSplashScreenBackground">#ffdc2430</color>
+    <color name="windowSplashScreenBackground">#FF530005</color>
     <color name="colorAccent">#ffffd89b</color>
     <color name="colorSecondary">#ffdc2430</color>
 </resources>
