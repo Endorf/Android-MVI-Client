@@ -30,7 +30,8 @@ fun SharedNotesTheme(
     val systemUiController = rememberSystemUiController()
     DisposableEffect(systemUiController, darkTheme) {
         systemUiController.systemBarsDarkContentEnabled = !darkTheme
-
+        systemUiController.setStatusBarColor(color = colorScheme.secondary)
+        systemUiController.setNavigationBarColor(color = colorScheme.secondary)
         onDispose {}
     }
 
@@ -60,27 +61,27 @@ fun SharedNotesTheme(
 }
 
 internal val DarkColorScheme = darkColorScheme(
-    primary = Blue80,
-    onPrimary = Blue20,
-    secondary = DarkBlue80,
-    primaryContainer = ExperimentalColorPrimaryLite,
+    primary = ExperimentalColorPrimary,
+    onPrimary = ExperimentalColorOnPrimary,
+    secondary = ExperimentalColorSecondary,
+    primaryContainer = ExperimentalColorPrimaryContainer,
     onPrimaryContainer = Blue90,
     inversePrimary = Blue40,
     onSecondary = DarkBlue20,
-    secondaryContainer = DarkBlue30,
+    secondaryContainer = ExperimentalColorSecondaryContainer,
     onSecondaryContainer = DarkBlue90,
     tertiary = Yellow80,
     onTertiary = Yellow20,
     tertiaryContainer = Yellow30,
     onTertiaryContainer = Yellow90,
-    error = Red80,
-    onError = Red20,
+    error = ExperimentalColorError,
+    onError = ExperimentalColorOnError,
     errorContainer = Red30,
     onErrorContainer = Red90,
     background = Grey10,
     onBackground = Grey90,
     surface = Grey10,
-    onSurface = Grey80,
+    onSurface = ExperimentalColorOnSurfaceDark,
     inverseSurface = Grey90,
     inverseOnSurface = Grey20,
     surfaceVariant = BlueGrey30,
@@ -89,27 +90,27 @@ internal val DarkColorScheme = darkColorScheme(
 )
 
 internal val LightColorScheme = lightColorScheme(
-    primary = ExperimentalColorAccent,
-    onPrimary = Color.White,
-    secondary = DarkBlue40,
-    primaryContainer = ExperimentalColorPrimaryLite,
+    primary = ExperimentalColorPrimary,
+    onPrimary = ExperimentalColorOnPrimary,
+    secondary = ExperimentalColorSecondary,
+    primaryContainer = ExperimentalColorPrimaryContainer,
     onPrimaryContainer = Blue10,
     inversePrimary = Blue80,
     onSecondary = Color.White,
-    secondaryContainer = DarkBlue90,
+    secondaryContainer = ExperimentalColorSecondaryContainer,
     onSecondaryContainer = DarkBlue10,
     tertiary = Yellow40,
     onTertiary = Color.White,
     tertiaryContainer = Yellow90,
     onTertiaryContainer = Yellow10,
-    error = Red40,
-    onError = Color.White,
+    error = ExperimentalColorError,
+    onError = ExperimentalColorOnError,
     errorContainer = Red90,
     onErrorContainer = Red10,
     background = Grey99,
     onBackground = Grey10,
     surface = Grey99,
-    onSurface = Grey10,
+    onSurface = ExperimentalColorOnSurfaceLight,
     inverseSurface = Grey20,
     inverseOnSurface = Grey95,
     surfaceVariant = BlueGrey90,
