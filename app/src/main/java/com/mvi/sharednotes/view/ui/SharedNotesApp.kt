@@ -64,7 +64,7 @@ fun SharedNotesNavHost(
     )
 
     Scaffold(
-        containerColor =MaterialTheme.colorScheme.primaryContainer,
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
         topBar = {
             SharedNotesAppBar(
                 currentScreen,
