@@ -8,7 +8,8 @@
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#FF191C1D</item>
+        <item name="windowSplashScreenBackground">@color/windowSplashScreenBackground</item>
+        <item name="android:windowBackground">@drawable/bg_window_radial</item>
         <item name="windowSplashScreenAnimationDuration">300</item>
         <item name="postSplashScreenTheme">@style/Theme.SharedNotes</item>
     </style>
