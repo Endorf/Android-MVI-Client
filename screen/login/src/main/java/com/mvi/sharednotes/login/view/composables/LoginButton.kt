@@ -26,6 +26,6 @@ fun LoginButton(
             ROUND_CORNER.dp,
             ROUND_CORNER.dp
         ),
-        onLoginClickListener,
+        onLoginClickListener
     )
 }

@@ -90,12 +90,14 @@ fun SharedNotesNavHost(
             enterTransition = {
                 slideInHorizontally(
                     animationSpec = keyframes { durationMillis = SLIDE_IN_DURATION },
-                    initialOffsetX = { INITIAL_OFFSET_X })
+                    initialOffsetX = { INITIAL_OFFSET_X }
+                )
             },
             exitTransition = {
                 slideOutHorizontally(
                     animationSpec = keyframes { durationMillis = SLIDE_OUT_DURATION },
-                    targetOffsetX = { -INITIAL_OFFSET_X })
+                    targetOffsetX = { -INITIAL_OFFSET_X }
+                )
             }
         ) {
             composable(Route.LOGIN.name) { LoginScreen(hiltViewModel(), onNoteListEnter) }

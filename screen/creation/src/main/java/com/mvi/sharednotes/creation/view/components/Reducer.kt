@@ -6,7 +6,7 @@ import com.mvi.sharednotes.creation.view.attributes.State
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
-class Reducer @Inject constructor()  {
+class Reducer @Inject constructor() {
 
     fun sendEvent(
         state: MutableStateFlow<State>,

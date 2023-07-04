@@ -22,7 +22,7 @@ class NotesRepository @Inject constructor(
         val local = localDataStore.get().map { it.toNote() }
         return remoteDataStore.read()
             .map { it.toNotes() }
-            .onStart { if(isRefreshing) emit(local) }
+            .onStart { if (isRefreshing) emit(local) }
             .onEach { remoteNotes ->
                 remoteNotes.filter { it !in local }
                     .toNoteEntities()

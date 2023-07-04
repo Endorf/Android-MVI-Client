@@ -42,7 +42,7 @@ private const val HORIZONTAL_PADDING = PADDING
 @Composable
 fun CreationScreen(
     viewModel: NewNoteViewModel,
-    navigateUp: () -> Unit,
+    navigateUp: () -> Unit
 ) {
     val effect by viewModel.effect.collectAsStateWithLifecycle()
     LaunchedEffect(effect) {
@@ -92,7 +92,6 @@ fun NewNoteLayout(
     descriptionTextChangeListener: (String) -> Unit,
     onSubmitClickListener: () -> Unit
 ) {
-
     ConstraintLayout(
         modifier = Modifier
             .fillMaxWidth()
@@ -112,7 +111,8 @@ fun NewNoteLayout(
         )
 
         TitleField(
-            state, Modifier
+            state,
+            Modifier
                 .fillMaxWidth()
                 .focusRequester(titleFocusRef)
                 .focusProperties { next = descriptionFocusRef }
@@ -153,6 +153,3 @@ fun NewNoteLayout(
         )
     }
 }
-
-
-
