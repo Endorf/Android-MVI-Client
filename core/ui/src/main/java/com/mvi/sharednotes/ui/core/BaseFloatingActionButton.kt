@@ -27,7 +27,7 @@ fun BaseFloatingActionButton(
         Icon(
             imageVector = imageVector,
             contentDescription = contentDescription,
-            tint = MaterialTheme.colorScheme.onSecondary,
+            tint = MaterialTheme.colorScheme.onSecondary
         )
     }
 }

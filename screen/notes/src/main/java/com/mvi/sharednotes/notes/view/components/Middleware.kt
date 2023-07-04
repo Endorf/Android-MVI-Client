@@ -17,6 +17,7 @@ class Middleware @Inject constructor(
         is Event.Refresh -> refresh(state)
     }
 
+    @Suppress("UnusedPrivateMember")
     private suspend fun refresh(state: State): Flow<Action> {
         return flow {
             emit(Action.Refreshing)
