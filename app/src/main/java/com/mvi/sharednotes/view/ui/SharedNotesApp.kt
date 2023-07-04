@@ -71,13 +71,15 @@ fun SharedNotesNavHost(
         backStackEntry?.destination?.route ?: Route.HOME.name
     )
 
+    val navigateUp: () -> Unit = { navController.navigateUp() }
+
     Scaffold(
         containerColor = MaterialTheme.colorScheme.primaryContainer,
         topBar = {
             SharedNotesAppBar(
                 currentScreen,
                 canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() }
+                navigateUp = navigateUp
             )
         }
     ) {
@@ -98,7 +100,7 @@ fun SharedNotesNavHost(
         ) {
             composable(Route.LOGIN.name) { LoginScreen(hiltViewModel(), onNoteListEnter) }
             composable(Route.HOME.name) { NotesScreen(hiltViewModel(), onCreationEnter) }
-            composable(Route.CREATION.name) { CreationScreen() }
+            composable(Route.CREATION.name) { CreationScreen(hiltViewModel(), navigateUp) }
         }
     }
 }

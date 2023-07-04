@@ -40,7 +40,7 @@ fun TitleField(state: State, modifier: Modifier, titleTextChangeListener: (Strin
             imeAction = ImeAction.Next
         ),
         titleTextChangeListener,
-        { focusManager.moveFocus(FocusDirection.Down) },
+        onNextClickListener = { focusManager.moveFocus(FocusDirection.Down) },
         modifier = modifier
     )
 }

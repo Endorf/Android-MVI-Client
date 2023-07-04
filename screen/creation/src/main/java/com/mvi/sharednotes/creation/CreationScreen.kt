@@ -10,15 +10,20 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mvi.sharednotes.creation.view.NewNoteViewModel
+import com.mvi.sharednotes.creation.view.attributes.Event
 import com.mvi.sharednotes.creation.view.attributes.State
 import com.mvi.sharednotes.creation.view.composables.DescriptionField
 import com.mvi.sharednotes.creation.view.composables.ProgressIndicator
@@ -35,11 +40,28 @@ private const val VERTICAL_PADDING = 0
 private const val HORIZONTAL_PADDING = PADDING
 
 @Composable
-fun CreationScreen() {
-    val state = State.create()
-    val titleTextChangeListener: (String) -> Unit = {}
-    val descriptionTextChangeListener: (String) -> Unit = {}
-    val onSubmitClickListener: () -> Unit = {}
+fun CreationScreen(
+    viewModel: NewNoteViewModel,
+    navigateUp: () -> Unit,
+) {
+    val effect by viewModel.effect.collectAsStateWithLifecycle()
+    LaunchedEffect(effect) {
+        when {
+            effect.transitionNotes -> navigateUp()
+            else -> Unit
+        }
+    }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    val titleTextChangeListener: (String) -> Unit = {
+        viewModel.dispatch(Event.TitleUpdate(it))
+    }
+    val descriptionTextChangeListener: (String) -> Unit = {
+        viewModel.dispatch(Event.DescriptionUpdate(it))
+    }
+    val onSubmitClickListener: () -> Unit = {
+        viewModel.dispatch(Event.Submit)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -70,7 +92,6 @@ fun NewNoteLayout(
     descriptionTextChangeListener: (String) -> Unit,
     onSubmitClickListener: () -> Unit
 ) {
-    val (titleFocusRef, descriptionFocusRef) = remember { createRefs() }
 
     ConstraintLayout(
         modifier = Modifier
@@ -78,8 +99,9 @@ fun NewNoteLayout(
             .verticalScroll(rememberScrollState())
     ) {
         val (title, description, button, progress) = remember { createRefs() }
+        val (titleFocusRef, descriptionFocusRef) = remember { FocusRequester.createRefs() }
         ProgressIndicator(
-            true,
+            state.isLoading,
             Modifier
                 .constrainAs(progress) {
                     top.linkTo(parent.top)
@@ -91,15 +113,15 @@ fun NewNoteLayout(
 
         TitleField(
             state, Modifier
+                .fillMaxWidth()
+                .focusRequester(titleFocusRef)
+                .focusProperties { next = descriptionFocusRef }
                 .constrainAs(title) {
                     top.linkTo(parent.top, PADDING.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 }
-                .padding(HORIZONTAL_PADDING.dp, VERTICAL_PADDING.dp)
-                .fillMaxWidth()
-                .focusRequester(titleFocusRef)
-                .focusProperties { next = descriptionFocusRef },
+                .padding(HORIZONTAL_PADDING.dp, VERTICAL_PADDING.dp),
             titleTextChangeListener
         )
 
@@ -130,37 +152,6 @@ fun NewNoteLayout(
                 }
         )
     }
-    /*Column(
-        modifier = Modifier.padding(PADDING.dp, PADDING.dp, PADDING.dp, PADDING.dp)
-    ) {
-        ProgressIndicator(
-            true,
-            Modifier
-                .fillMaxWidth()
-        )
-        TitleField(
-            state, Modifier
-                .fillMaxWidth()
-                .focusRequester(title)
-                .focusProperties { next = description },
-            titleTextChangeListener
-        )
-        DescriptionField(
-            state,
-            Modifier
-                .fillMaxWidth()
-                .focusRequester(description),
-            descriptionTextChangeListener,
-            onSubmitClickListener
-        )
-        SubmitButton(
-            state.isLoading,
-            onSubmitClickListener,
-            Modifier.fillMaxWidth()
-        )
-    }
-
-     */
 }
 
 
