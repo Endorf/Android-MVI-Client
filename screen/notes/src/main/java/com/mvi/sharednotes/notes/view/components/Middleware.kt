@@ -14,6 +14,20 @@ class Middleware @Inject constructor(
 
     suspend fun dispatch(state: State, event: Event): Flow<Action> = when (event) {
         is Event.GetNotes -> getNotes(state)
+        is Event.Refresh -> refresh(state)
+    }
+
+    @Suppress("UnusedPrivateMember")
+    private suspend fun refresh(state: State): Flow<Action> {
+        return flow {
+            emit(Action.Refreshing)
+
+            repository.get(
+                isRefreshing = true
+            ).collect { notes ->
+                emit(Action.ShowNotes(notes))
+            }
+        }
     }
 
     @Suppress("UnusedPrivateMember")

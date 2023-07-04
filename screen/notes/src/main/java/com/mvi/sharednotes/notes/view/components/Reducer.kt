@@ -22,12 +22,17 @@ class Reducer {
         action: Action
     ) {
         when (action) {
+            Action.Refreshing -> state.value = state.value.copy(
+                isRefreshing = true,
+                isLoading = false,
+                hasError = false,
+                errorMessage = ""
+            )
             Action.Loading -> state.value = state.value.copy(
                 isLoading = true,
                 hasError = false,
                 errorMessage = ""
             )
-
             is Action.Error -> state.value = state.value.copy(
                 isLoading = false,
                 hasError = true,
@@ -36,6 +41,7 @@ class Reducer {
 
             is Action.ShowNotes -> state.value = state.value.copy(
                 isLoading = false,
+                isRefreshing = false,
                 hasError = false,
                 errorMessage = "",
                 action.notes

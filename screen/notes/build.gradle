@@ -68,6 +68,7 @@ dependencies {
     implementation jetpackCompose.androidx.activity
     implementation jetpackCompose.androidx.ui
     implementation jetpackCompose.androidx.ui.tooling.preview
+    implementation jetpackCompose.androidx.material
     implementation jetpackCompose.androidx.material3
     implementation jetpackCompose.androidx.lifecycle.runtime
     implementation jetpackCompose.androidx.lifecycle.viewmodel

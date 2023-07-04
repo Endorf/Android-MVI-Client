@@ -18,11 +18,11 @@ class NotesRepository @Inject constructor(
     private val localDataStore: LocalNoteDataStore
 ) : Repository {
 
-    override suspend fun get(): Flow<List<Note>> {
+    override suspend fun get(isRefreshing: Boolean): Flow<List<Note>> {
         val local = localDataStore.get().map { it.toNote() }
         return remoteDataStore.read()
             .map { it.toNotes() }
-            .onStart { emit(local) }
+            .onStart { if (isRefreshing) emit(local) }
             .onEach { remoteNotes ->
                 remoteNotes.filter { it !in local }
                     .toNoteEntities()
