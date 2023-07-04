@@ -1,4 +1,4 @@
-package com.mvi.sharednotes.login.view.composables
+package com.mvi.sharednotes.creation.view.composables
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -10,39 +10,33 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.mvi.sharednotes.login.R
-import com.mvi.sharednotes.login.view.attributes.State
+import com.mvi.sharednotes.creation.R
+import com.mvi.sharednotes.creation.view.attributes.State
 import com.mvi.sharednotes.ui.core.BaseOutlinedTextField
 import com.mvi.sharednotes.ui.core.NO_ROUND_CORNER
-import com.mvi.sharednotes.ui.core.ROUND_CORNER
 
 @Composable
-fun EmailView(
+fun DescriptionField(
     state: State,
-    textChangeListener: (String) -> Unit,
-    onDoneClickListener: () -> Unit,
-    modifier: Modifier
+    modifier: Modifier,
+    descriptionTextChangeListener: (String) -> Unit,
+    onDoneClickListener: () -> Unit
 ) {
     BaseOutlinedTextField(
-        state.email,
+        state.description,
         state.isLoading,
         state.hasError,
         state.errorMessage,
-        stringResource(id = R.string.login_email_hint),
-        stringResource(id = R.string.login_email_hint),
+        stringResource(id = R.string.description_label),
+        stringResource(id = R.string.description_placeholder),
         Icons.Default.Email,
-        RoundedCornerShape(
-            ROUND_CORNER.dp,
-            ROUND_CORNER.dp,
-            NO_ROUND_CORNER.dp,
-            NO_ROUND_CORNER.dp
-        ),
+        RoundedCornerShape(NO_ROUND_CORNER.dp),
         KeyboardOptions(
-            keyboardType = KeyboardType.Email,
+            keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Done
         ),
-        textChangeListener,
-        onDoneClickListener,
+        descriptionTextChangeListener,
+        onDoneClickListener = onDoneClickListener,
         modifier = modifier
     )
 }

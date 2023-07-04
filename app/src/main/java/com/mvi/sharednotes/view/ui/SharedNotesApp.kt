@@ -5,6 +5,8 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.keyframes
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -29,6 +31,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.mvi.sharednotes.R
+import com.mvi.sharednotes.creation.CreationScreen
 import com.mvi.sharednotes.login.LoginScreen
 import com.mvi.sharednotes.notes.NotesScreen
 import com.mvi.sharednotes.theme.TopAppBarColor
@@ -41,8 +44,10 @@ fun SharedNotesApp() {
 }
 
 private const val INITIAL_OFFSET_X = 1500
+private const val SLIDE_IN_DURATION = 300
+private const val SLIDE_OUT_DURATION = 150
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun SharedNotesNavHost(
     navController: NavHostController,
@@ -55,6 +60,9 @@ fun SharedNotesNavHost(
                 inclusive = true
             }
         }
+    }
+    val onCreationEnter = {
+        navController.navigate(Route.CREATION.name)
     }
 
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -77,10 +85,20 @@ fun SharedNotesNavHost(
             navController = navController,
             startDestination = startDestination,
             modifier = modifier.padding(it),
-            enterTransition = { slideInHorizontally(initialOffsetX = { INITIAL_OFFSET_X }) }
+            enterTransition = {
+                slideInHorizontally(
+                    animationSpec = keyframes { durationMillis = SLIDE_IN_DURATION },
+                    initialOffsetX = { INITIAL_OFFSET_X })
+            },
+            exitTransition = {
+                slideOutHorizontally(
+                    animationSpec = keyframes { durationMillis = SLIDE_OUT_DURATION },
+                    targetOffsetX = { -INITIAL_OFFSET_X })
+            }
         ) {
             composable(Route.LOGIN.name) { LoginScreen(hiltViewModel(), onNoteListEnter) }
-            composable(Route.HOME.name) { NotesScreen(hiltViewModel()) }
+            composable(Route.HOME.name) { NotesScreen(hiltViewModel(), onCreationEnter) }
+            composable(Route.CREATION.name) { CreationScreen() }
         }
     }
 }

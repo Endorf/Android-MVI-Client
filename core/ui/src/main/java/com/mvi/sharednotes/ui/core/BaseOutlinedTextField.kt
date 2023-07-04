@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
@@ -12,11 +11,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BaseOutlinedTextField(
     value: String,
@@ -26,8 +21,11 @@ fun BaseOutlinedTextField(
     label: String,
     placeholder: String,
     icon: ImageVector?,
-    userInputHandler: (String) -> Unit,
-    onDoneClickListener: () -> Unit,
+    shape: RoundedCornerShape,
+    keyboardOptions: KeyboardOptions,
+    userInputHandler: (String) -> Unit = {},
+    onDoneClickListener: () -> Unit = {},
+    onNextClickListener: () -> Unit = {},
     modifier: Modifier
 ) {
     OutlinedTextField(
@@ -43,14 +41,13 @@ fun BaseOutlinedTextField(
                 )
             }
         },
-        shape = RoundedCornerShape(5.dp, 5.dp, 0.dp, 0.dp),
+        shape = shape,
         value = value,
         leadingIcon = { icon?.let { Icon(imageVector = icon, contentDescription = null) } },
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Email,
-            imeAction = ImeAction.Done
-        ),
-        keyboardActions = KeyboardActions(onDone = { onDoneClickListener() }),
+        keyboardOptions = keyboardOptions,
+        keyboardActions = KeyboardActions(
+            onDone = { onDoneClickListener() },
+            onNext = { onNextClickListener() }),
         onValueChange = { userInputHandler(it) },
         label = { Text(text = label) },
         placeholder = { Text(text = placeholder) }

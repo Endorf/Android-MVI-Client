@@ -16,7 +16,7 @@ import com.mvi.sharednotes.notes.view.NotesViewModel
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
@@ -34,7 +34,8 @@ private const val FAB_PADDING = 16
 
 @Composable
 fun NotesScreen(
-    viewModel: NotesViewModel
+    viewModel: NotesViewModel,
+    onCreationEnter: () -> Unit
 ) {
     LaunchedEffect(Unit) {
         viewModel.dispatch(Event.GetNotes)
@@ -54,8 +55,9 @@ fun NotesScreen(
         Fab(
             Modifier
                 .padding(FAB_PADDING.dp)
-                .align(Alignment.BottomEnd)
-        ) { }
+                .align(Alignment.BottomEnd),
+            onCreationEnter
+        )
         ProgressIndicator(
             state.isLoading,
             Modifier.fillMaxWidth()
@@ -68,7 +70,7 @@ fun Fab(modifier: Modifier, onClick: () -> Unit) {
     BaseFloatingActionButton(
         modifier,
         stringResource(id = R.string.fab_content_description),
-        Icons.Rounded.Add,
+        Icons.Rounded.Edit,
         onClick
     )
 }
