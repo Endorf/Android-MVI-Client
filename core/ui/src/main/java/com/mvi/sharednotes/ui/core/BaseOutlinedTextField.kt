@@ -9,8 +9,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.input.TextFieldValue
 
 @Composable
 fun BaseOutlinedTextField(
@@ -28,6 +33,8 @@ fun BaseOutlinedTextField(
     onNextClickListener: () -> Unit = {},
     modifier: Modifier
 ) {
+    var content by remember { mutableStateOf(TextFieldValue(value)) }
+
     OutlinedTextField(
         enabled = !isLoading,
         modifier = modifier,
@@ -42,13 +49,16 @@ fun BaseOutlinedTextField(
             }
         },
         shape = shape,
-        value = value,
+        value = content,
         leadingIcon = { icon?.let { Icon(imageVector = icon, contentDescription = null) } },
         keyboardOptions = keyboardOptions,
         keyboardActions = KeyboardActions(
             onDone = { onDoneClickListener() },
             onNext = { onNextClickListener() }),
-        onValueChange = { userInputHandler(it) },
+        onValueChange = { newContent ->
+            content = newContent
+            userInputHandler(newContent.text)
+        },
         label = { Text(text = label) },
         placeholder = { Text(text = placeholder) }
     )
