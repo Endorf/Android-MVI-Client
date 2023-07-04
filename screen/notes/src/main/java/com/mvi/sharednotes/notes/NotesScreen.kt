@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -14,6 +13,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mvi.sharednotes.notes.attributes.Event
 import com.mvi.sharednotes.notes.view.entity.Note
 import com.mvi.sharednotes.notes.view.NotesViewModel
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -34,7 +34,7 @@ private const val FAB_PADDING = 16
 
 @Composable
 fun NotesScreen(
-    viewModel: NotesViewModel,
+    viewModel: NotesViewModel
 ) {
     LaunchedEffect(Unit) {
         viewModel.dispatch(Event.GetNotes)
