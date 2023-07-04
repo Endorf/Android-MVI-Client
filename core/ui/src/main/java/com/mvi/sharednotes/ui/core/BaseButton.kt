@@ -15,7 +15,7 @@ fun BaseButton(
     title: String,
     modifier: Modifier,
     shape: RoundedCornerShape,
-    onClickListener: () -> Unit,
+    onClickListener: () -> Unit
 ) {
     Button(
         modifier = modifier,

@@ -55,7 +55,8 @@ fun BaseOutlinedTextField(
         keyboardOptions = keyboardOptions,
         keyboardActions = KeyboardActions(
             onDone = { onDoneClickListener() },
-            onNext = { onNextClickListener() }),
+            onNext = { onNextClickListener() }
+        ),
         onValueChange = { newContent ->
             content = newContent
             userInputHandler(newContent.text)
