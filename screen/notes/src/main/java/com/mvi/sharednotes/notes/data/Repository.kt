@@ -5,7 +5,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
-    suspend fun get(): Flow<List<Note>>
+    suspend fun get(
+        isRefreshing: Boolean = false
+    ): Flow<List<Note>>
 
     suspend fun get(id: Long): Flow<Note>
 }
