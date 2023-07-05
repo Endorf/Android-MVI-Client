@@ -23,7 +23,7 @@ class NotesRepository @Inject constructor(
 
         return remoteDataStore.read()
             .map { it.toNoteList() }
-            .onStart { if (isRefreshing) emit(local) }
+            .onStart { if (!isRefreshing) emit(local) }
             .onEach { remoteNotes ->
                 remoteNotes.filter { it !in local }
                     .toLocalPostEntityList()
