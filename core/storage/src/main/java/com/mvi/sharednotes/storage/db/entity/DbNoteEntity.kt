@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "note")
-data class NoteEntity(
+data class DbNoteEntity(
     @PrimaryKey
     @ColumnInfo(name = "row_id")
     val postId: Int,

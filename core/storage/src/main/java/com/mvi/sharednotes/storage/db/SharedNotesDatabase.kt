@@ -7,12 +7,12 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.mvi.sharednotes.storage.BuildConfig
 import com.mvi.sharednotes.storage.db.dao.NoteDao
 import com.mvi.sharednotes.storage.db.dao.UserDao
-import com.mvi.sharednotes.storage.db.entity.NoteEntity
-import com.mvi.sharednotes.storage.db.entity.UserEntity
+import com.mvi.sharednotes.storage.db.entity.DbNoteEntity
+import com.mvi.sharednotes.storage.db.entity.DbUserEntity
 
 @Database(
     version = BuildConfig.DB_VERSION,
-    entities = [UserEntity::class, NoteEntity::class],
+    entities = [DbUserEntity::class, DbNoteEntity::class],
     exportSchema = true
 )
 abstract class SharedNotesDatabase : RoomDatabase() {

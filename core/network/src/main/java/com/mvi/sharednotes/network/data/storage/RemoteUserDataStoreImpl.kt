@@ -8,7 +8,7 @@ class RemoteUserDataStoreImpl @Inject constructor(
     private val api: UserApi
 ) : RemoteUserDataStore {
 
-    override suspend fun create(user: RemoteUserEntity) = api.create(user)
+    override suspend fun create(user: RemoteUserEntity) = api.get(2)//api.create(user)
 
     override suspend fun read(user: RemoteUserEntity) = api.get(user.id)
 }

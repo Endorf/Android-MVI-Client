@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PostEntity(
+data class RemotePostEntity(
     val id: Int = -1,
     var title: String? = null,
     val body: String? = null,
