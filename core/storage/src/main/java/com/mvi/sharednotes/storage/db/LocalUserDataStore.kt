@@ -2,23 +2,22 @@ package com.mvi.sharednotes.storage.db
 
 import com.mvi.sharednotes.storage.UserDataStore
 import com.mvi.sharednotes.storage.db.dao.UserDao
-import com.mvi.sharednotes.storage.db.entity.UserEntity
-import kotlinx.coroutines.flow.Flow
+import com.mvi.sharednotes.storage.entities.LocalUserEntity
+import com.mvi.sharednotes.storage.entities.mapper.toLocalUserEntity
+import com.mvi.sharednotes.storage.entities.mapper.toDbUserEntity
 import javax.inject.Inject
 
 class LocalUserDataStore @Inject constructor(
     private val userDao: UserDao
 ) : UserDataStore {
 
-    override fun create(user: UserEntity): Unit = userDao.insert(user)
-
-    // TODO: remove flow
-    override fun get(user: UserEntity): Flow<UserEntity> = userDao.read(user.email)
-
-    // TODO: remove flow
-    override fun get(): Flow<UserEntity> {
-        TODO("return all users")
+    override suspend fun create(user: LocalUserEntity) = user.toDbUserEntity().let {
+        userDao.insert(it)
     }
 
-    override fun update(user: UserEntity): Unit = userDao.insert(user)
+    override suspend fun get(user: LocalUserEntity?) = user?.email?.let {
+        userDao.read(user.email)
+    }?.toLocalUserEntity()
+
+    override suspend fun update(user: LocalUserEntity) = TODO("Not yet implemented")
 }

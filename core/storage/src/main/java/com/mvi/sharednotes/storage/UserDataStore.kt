@@ -1,15 +1,12 @@
 package com.mvi.sharednotes.storage
 
-import com.mvi.sharednotes.storage.db.entity.UserEntity
-import kotlinx.coroutines.flow.Flow
+import com.mvi.sharednotes.storage.entities.LocalUserEntity
 
 interface UserDataStore {
 
-    fun create(user: UserEntity)
+    suspend fun create(user: LocalUserEntity)
 
-    fun get(user: UserEntity): Flow<UserEntity>
+    suspend fun get(user: LocalUserEntity? = null): LocalUserEntity?
 
-    fun get(): Flow<UserEntity>
-
-    fun update(user: UserEntity)
+    suspend fun update(user: LocalUserEntity)
 }
