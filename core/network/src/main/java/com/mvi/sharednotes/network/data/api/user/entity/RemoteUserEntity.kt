@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class UserEntity(
+data class RemoteUserEntity(
     val id: Int = -1,
     var email: String,
     val name: String? = null,

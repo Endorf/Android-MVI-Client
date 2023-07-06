@@ -1,13 +1,13 @@
 package com.mvi.sharednotes.login
 
 import com.mvi.sharednotes.login.data.Repository
+import com.mvi.sharednotes.login.data.entity.User
 import com.mvi.sharednotes.login.view.LoginViewModel
 import com.mvi.sharednotes.login.view.attributes.Event
 import com.mvi.sharednotes.login.view.components.Reducer
 import com.mvi.sharednotes.login.view.components.middleware.LoggerMiddleware
 import com.mvi.sharednotes.login.view.components.middleware.Middleware
 import com.mvi.sharednotes.login.view.entity.UserCredentials
-import com.mvi.sharednotes.network.data.api.user.entity.UserEntity
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
@@ -82,7 +82,7 @@ class LoginViewModelTest {
         `when`(
             repository.get(UserCredentials(USER_INPUT_CORRECT))
         ).thenReturn(
-            flowOf(UserEntity(email = USER_INPUT_CORRECT))
+            flowOf(User(email = USER_INPUT_CORRECT))
         )
 
         viewModel.dispatch(Event.EmailUpdate(USER_INPUT_CORRECT))
