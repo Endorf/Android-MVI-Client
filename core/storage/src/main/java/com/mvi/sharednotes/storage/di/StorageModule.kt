@@ -27,7 +27,10 @@ class StorageModule {
     @Provides
     @Shared
     @Singleton
-    fun providePreferenceDataStore(@ApplicationContext context: Context): UserDataStore = SharedUserDataStore(context)
+    fun providePreferenceDataStore(@ApplicationContext context: Context): UserDataStore =
+        SharedUserDataStore(
+            context
+        )
 
     @Provides
     @Singleton
