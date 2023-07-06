@@ -32,23 +32,35 @@ import com.mvi.sharednotes.R
 import com.mvi.sharednotes.login.LoginScreen
 import com.mvi.sharednotes.notes.NotesScreen
 import com.mvi.sharednotes.theme.TopAppBarColor
+import com.mvi.sharednotes.view.attributes.State
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun SharedNotesApp() {
+fun SharedNotesApp(state: State) {
     val navController = rememberAnimatedNavController()
-    SharedNotesNavHost(navController)
+    SharedNotesNavHost(
+        navController,
+        state = state
+    )
 }
 
 private const val INITIAL_OFFSET_X = 1500
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun SharedNotesNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String = Route.LOGIN.name
+    state: State
 ) {
+    val startDestination = when (state) {
+        is State.Initialized -> if (state.isUserAuthenticated) {
+            Route.HOME.name
+        } else {
+            Route.LOGIN.name
+        }
+        State.Loading -> return
+    }
     val onNoteListEnter = {
         navController.navigate(Route.HOME.name) {
             popUpTo(Route.LOGIN.name) {

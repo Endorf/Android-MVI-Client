@@ -60,6 +60,7 @@ dependencies {
     //region application modules
     implementation projects.screen.login
     implementation projects.screen.notes
+    implementation projects.core.storage
     //endregion
     //region Hilt
     implementation general.hilt
@@ -76,6 +77,7 @@ dependencies {
     implementation jetpackCompose.androidx.activity
     implementation jetpackCompose.androidx.ui
     implementation jetpackCompose.androidx.ui.tooling.preview
+    implementation jetpackCompose.androidx.lifecycle.runtime
     implementation jetpackCompose.androidx.material3
     debugImplementation jetpackCompose.androidx.ui.tooling
     debugImplementation jetpackCompose.androidx.ui.test.manifest
