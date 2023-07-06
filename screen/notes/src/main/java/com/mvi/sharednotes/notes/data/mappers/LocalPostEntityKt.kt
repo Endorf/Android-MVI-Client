@@ -10,4 +10,3 @@ fun LocalPostEntity.toNote() = Note(postId, username, tag, title, description)
 fun List<LocalPostEntity>.toNoteList() = map { it.toNote() }
 
 fun List<Note>.toLocalPostEntityList() = map { it.toLocalPostEntity() }
-

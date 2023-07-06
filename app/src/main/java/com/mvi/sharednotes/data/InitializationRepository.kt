@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class InitializationRepository @Inject() constructor(
+class InitializationRepository @Inject constructor(
     @Shared private val sharedDataStore: UserDataStore
 ) : Repository {
 

@@ -1,7 +1,6 @@
 package com.mvi.sharednotes.storage.preferences
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -19,10 +18,11 @@ class SharedUserDataStore @Inject constructor(
     private val context: Context
 ) : UserDataStore {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = STORAGE_NAME)
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+        name = STORAGE_NAME
+    )
 
     override suspend fun create(user: LocalUserEntity) {
-        Log.e("test", "create: $user")
         context.dataStore.edit { preferences ->
             preferences[ID_KEY] = user.userId
             preferences[EMAIL_KEY] = user.email
