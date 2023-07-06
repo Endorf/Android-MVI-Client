@@ -2,32 +2,27 @@ package com.mvi.sharednotes.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mvi.sharednotes.view.attributes.InitialState
+import com.mvi.sharednotes.data.Repository
+import com.mvi.sharednotes.view.attributes.State
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class InitialViewModel @Inject constructor() : ViewModel() {
+class InitialViewModel @Inject constructor(
+    repository: Repository
+) : ViewModel() {
 
-    val state = initialize().map {
-        InitialState.Initialized
+    val state: StateFlow<State> = repository.get().map { user ->
+        State.Initialized(user != null && user.userId > 0)
     }.stateIn(
         scope = viewModelScope,
-        initialValue = InitialState.Loading,
+        initialValue = State.Loading,
         started = SharingStarted.WhileSubscribed(TIMEOUT)
     )
-
-    // todo: replace with initialization from Repository
-    @Suppress("MagicNumber")
-    private fun initialize() = flow {
-        delay(1000)
-        emit(InitialState.Initialized)
-    }
 
     companion object {
         private const val TIMEOUT = 5_000L

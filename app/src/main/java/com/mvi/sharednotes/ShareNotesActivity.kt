@@ -17,7 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.mvi.sharednotes.theme.SharedNotesTheme
 import com.mvi.sharednotes.view.InitialViewModel
-import com.mvi.sharednotes.view.attributes.InitialState
+import com.mvi.sharednotes.view.attributes.State
 import com.mvi.sharednotes.view.ui.SharedNotesApp
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -33,7 +33,7 @@ class ShareNotesActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
-        var state: InitialState by mutableStateOf(InitialState.Loading)
+        var state: State by mutableStateOf(State.Loading)
 
         val splashScreen = applySplashScreen()
 
@@ -49,12 +49,15 @@ class ShareNotesActivity : ComponentActivity() {
 
         splashScreen.setKeepOnScreenCondition {
             when (state) {
-                is InitialState.Loading -> true
+                is State.Loading -> true
                 else -> false
             }
         }
-
-        startComposeApplication()
+        setContent {
+            SharedNotesTheme {
+                SharedNotesApp(state)
+            }
+        }
     }
 
     private fun applySplashScreen() = installSplashScreen().apply {
@@ -68,12 +71,6 @@ class ShareNotesActivity : ComponentActivity() {
             fadeAnim.duration = ANIMATION_DURATION
             fadeAnim.interpolator = AccelerateInterpolator()
             fadeAnim.start()
-        }
-    }
-
-    private fun startComposeApplication() = setContent {
-        SharedNotesTheme {
-            SharedNotesApp()
         }
     }
 
