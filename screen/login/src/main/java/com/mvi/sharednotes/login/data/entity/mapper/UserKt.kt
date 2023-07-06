@@ -10,3 +10,5 @@ fun UserCredentials.toRemoteUserEntity() = RemoteUserEntity(email = email)
 fun RemoteUserEntity.toLocalUserEntity() = LocalUserEntity(id, email, userName, name)
 
 fun RemoteUserEntity.toUser() = User(id, email, userName, name)
+
+fun LocalUserEntity.toUser() = User(userId, email, userName, name)
