@@ -20,6 +20,7 @@ import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -90,7 +91,9 @@ fun NotesList(state: State, refresh: () -> Unit) {
         PullRefreshIndicator(
             state.isRefreshing,
             pullRefreshState,
-            Modifier.align(Alignment.TopCenter)
+            Modifier.align(Alignment.TopCenter),
+            MaterialTheme.colorScheme.tertiary,
+            MaterialTheme.colorScheme.onTertiary
         )
     }
 }

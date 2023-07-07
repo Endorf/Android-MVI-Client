@@ -20,12 +20,16 @@ fun SharedNotesTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+
+    /* TODO: Update color scheme according to dynamicColorScheme
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         val context = LocalContext.current
         if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     } else {
         if (darkTheme) DarkColorScheme else LightColorScheme
     }
+     */
 
     val systemUiController = rememberSystemUiController()
     DisposableEffect(systemUiController, darkTheme) {
@@ -70,7 +74,7 @@ internal val DarkColorScheme = darkColorScheme(
     onSecondary = DarkBlue20,
     secondaryContainer = ExperimentalColorSecondaryContainer,
     onSecondaryContainer = DarkBlue90,
-    tertiary = ExperimentalColorPrimaryContainer,
+    tertiary = ExperimentalTertiaryDark,
     onTertiary = Color.White,
     tertiaryContainer = Yellow30,
     onTertiaryContainer = Yellow90,
@@ -99,8 +103,8 @@ internal val LightColorScheme = lightColorScheme(
     onSecondary = Color.White,
     secondaryContainer = ExperimentalColorSecondaryContainer,
     onSecondaryContainer = DarkBlue10,
-    tertiary = ExperimentalColorPrimaryContainer,
-    onTertiary = Color.White,
+    tertiary = ExperimentalTertiary,
+    onTertiary = ExperimentalOnTertiary,
     tertiaryContainer = Yellow90,
     onTertiaryContainer = Yellow10,
     error = ExperimentalColorError,

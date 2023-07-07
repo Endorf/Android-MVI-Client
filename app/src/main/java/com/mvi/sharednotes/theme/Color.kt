@@ -17,6 +17,10 @@ internal val ExperimentalColorError = Color(0xffdc2430)
 internal val ExperimentalColorOnError = Color(0xffdc2430)
 internal val ExperimentalColorAccent = Color(0xffffd89b)
 
+internal val ExperimentalTertiary = Color(0xFFFFF6F6)
+internal val ExperimentalOnTertiary = Color(0xffdc2430)
+internal val ExperimentalTertiaryDark = Color(0xFF5F0404)
+
 internal val Blue10 = Color(0xFF001F28)
 internal val Blue20 = Color(0xFF003544)
 internal val Blue30 = Color(0xFF004D61)
