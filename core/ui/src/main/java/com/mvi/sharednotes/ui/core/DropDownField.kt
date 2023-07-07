@@ -27,7 +27,7 @@ fun BaseDropDownField(
     shape: RoundedCornerShape,
     label: String,
     modifier: Modifier,
-    userInputHandler: (String) -> Unit = {},
+    userInputHandler: (String) -> Unit = {}
 ) {
     var expanded by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf(defaultValue) }
@@ -60,11 +60,11 @@ fun BaseDropDownField(
             shape = shape,
             label = { Text(label) },
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-            colors = ExposedDropdownMenuDefaults.textFieldColors(),
+            colors = ExposedDropdownMenuDefaults.textFieldColors()
         )
         ExposedDropdownMenu(
             expanded = expanded,
-            onDismissRequest = { expanded = false },
+            onDismissRequest = { expanded = false }
         ) {
             options.forEach { selectionOption ->
                 DropdownMenuItem(
@@ -74,7 +74,7 @@ fun BaseDropDownField(
                         expanded = false
                         userInputHandler(selectionOption)
                     },
-                    contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
+                    contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
                 )
             }
         }

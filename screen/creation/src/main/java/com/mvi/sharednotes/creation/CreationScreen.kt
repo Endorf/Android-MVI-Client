@@ -90,6 +90,7 @@ fun CreationScreen(
     }
 }
 
+@Suppress("LongMethod")
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun NewNoteLayout(

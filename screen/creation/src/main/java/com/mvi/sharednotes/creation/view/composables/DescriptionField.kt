@@ -37,6 +37,6 @@ fun DescriptionField(
         onDoneClickListener = onDoneClickListener,
         minLines = 2,
         maxLines = 4,
-        modifier = modifier// .heightIn(min = LOGIN_CONTAINER_HEIGHT.dp)
+        modifier = modifier
     )
 }

@@ -13,5 +13,5 @@ data class DbNoteEntity(
     val body: String?,
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "row_id")
-    val id: Int = 0,
+    val id: Int = 0
 )

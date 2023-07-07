@@ -16,7 +16,7 @@ fun DropDownField(
     state: State,
     options: Array<String>,
     modifier: Modifier,
-    userInputHandler: (String) -> Unit,
+    userInputHandler: (String) -> Unit
 ) {
     BaseDropDownField(
         state.tag,
