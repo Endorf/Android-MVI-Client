@@ -24,32 +24,49 @@ class Reducer @Inject constructor() {
         when (action) {
             Action.Loading -> state.value = state.value.copy(
                 isLoading = true,
-                hasError = false
+                isDropDownError = false,
+                isTitleError = false
             )
 
             is Action.Submit -> {
                 state.value = state.value.copy(
                     isLoading = false,
-                    hasError = false,
-                    isSubmited = true
+                    isDropDownError = false,
+                    isTitleError = false,
+                    isSubmitted = true
                 )
                 effect.value = effect.value.copy(transitionNotes = true)
             }
 
-            is Action.Error -> state.value = state.value.copy(
+            is Action.TitleError -> state.value = state.value.copy(
                 isLoading = false,
-                hasError = true,
+                isDropDownError = false,
+                isTitleError = true,
+                errorMessage = action.e?.message ?: ""
+            )
+            is Action.TagError -> state.value = state.value.copy(
+                isLoading = false,
+                isDropDownError = true,
+                isTitleError = false,
                 errorMessage = action.e?.message ?: ""
             )
 
             is Action.TitleInput -> state.value = state.value.copy(
                 title = action.userInput,
-                hasError = false
+                isDropDownError = false,
+                isTitleError = false
             )
 
             is Action.DescriptionInput -> state.value = state.value.copy(
                 description = action.userInput,
-                hasError = false
+                isDropDownError = false,
+                isTitleError = false
+            )
+
+            is Action.TagInput -> state.value = state.value.copy(
+                tag = action.userInput,
+                isDropDownError = false,
+                isTitleError = false
             )
         }
     }

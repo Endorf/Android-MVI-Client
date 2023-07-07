@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -26,6 +27,7 @@ import com.mvi.sharednotes.creation.view.NewNoteViewModel
 import com.mvi.sharednotes.creation.view.attributes.Event
 import com.mvi.sharednotes.creation.view.attributes.State
 import com.mvi.sharednotes.creation.view.composables.DescriptionField
+import com.mvi.sharednotes.creation.view.composables.DropDownField
 import com.mvi.sharednotes.creation.view.composables.ProgressIndicator
 import com.mvi.sharednotes.creation.view.composables.SubmitButton
 import com.mvi.sharednotes.creation.view.composables.TitleField
@@ -59,6 +61,9 @@ fun CreationScreen(
     val descriptionTextChangeListener: (String) -> Unit = {
         viewModel.dispatch(Event.DescriptionUpdate(it))
     }
+    val onDropDownPickListener: (String) -> Unit = {
+        viewModel.dispatch(Event.TagUpdate(it))
+    }
     val onSubmitClickListener: () -> Unit = {
         viewModel.dispatch(Event.Submit)
     }
@@ -78,6 +83,7 @@ fun CreationScreen(
                 state,
                 titleTextChangeListener,
                 descriptionTextChangeListener,
+                onDropDownPickListener,
                 onSubmitClickListener
             )
         }
@@ -90,6 +96,7 @@ fun NewNoteLayout(
     state: State,
     titleTextChangeListener: (String) -> Unit,
     descriptionTextChangeListener: (String) -> Unit,
+    onDropDownPickListener: (String) -> Unit,
     onSubmitClickListener: () -> Unit
 ) {
     ConstraintLayout(
@@ -97,7 +104,7 @@ fun NewNoteLayout(
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
     ) {
-        val (title, description, button, progress) = remember { createRefs() }
+        val (title, description, button, progress, dropdown) = remember { createRefs() }
         val (titleFocusRef, descriptionFocusRef) = remember { FocusRequester.createRefs() }
         ProgressIndicator(
             state.isLoading,
@@ -110,6 +117,20 @@ fun NewNoteLayout(
                 .fillMaxWidth()
         )
 
+        DropDownField(
+            state,
+            stringArrayResource(R.array.note_types),
+            Modifier
+                .constrainAs(dropdown) {
+                    top.linkTo(parent.top, PADDING.dp)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
+                .padding(HORIZONTAL_PADDING.dp, VERTICAL_PADDING.dp)
+                .fillMaxWidth(),
+            onDropDownPickListener
+        )
+
         TitleField(
             state,
             Modifier
@@ -117,7 +138,7 @@ fun NewNoteLayout(
                 .focusRequester(titleFocusRef)
                 .focusProperties { next = descriptionFocusRef }
                 .constrainAs(title) {
-                    top.linkTo(parent.top, PADDING.dp)
+                    top.linkTo(dropdown.bottom, 8.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 }
@@ -139,7 +160,6 @@ fun NewNoteLayout(
             descriptionTextChangeListener,
             onSubmitClickListener
         )
-
         SubmitButton(
             state.isLoading,
             onSubmitClickListener,
@@ -147,7 +167,7 @@ fun NewNoteLayout(
                 .padding(HORIZONTAL_PADDING.dp, VERTICAL_PADDING.dp)
                 .fillMaxWidth()
                 .constrainAs(button) {
-                    top.linkTo(description.top, FIELD_MARGIN.dp)
+                    top.linkTo(description.bottom, PADDING.dp)
                     bottom.linkTo(parent.bottom, PADDING.dp)
                 }
         )

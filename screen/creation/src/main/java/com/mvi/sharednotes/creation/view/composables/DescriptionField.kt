@@ -2,8 +2,6 @@ package com.mvi.sharednotes.creation.view.composables
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -25,11 +23,11 @@ fun DescriptionField(
     BaseOutlinedTextField(
         state.description,
         state.isLoading,
-        state.hasError,
+        false,
         state.errorMessage,
         stringResource(id = R.string.description_label),
         stringResource(id = R.string.description_placeholder),
-        Icons.Default.Email,
+        null,
         RoundedCornerShape(NO_ROUND_CORNER.dp),
         KeyboardOptions(
             keyboardType = KeyboardType.Text,
@@ -37,6 +35,8 @@ fun DescriptionField(
         ),
         descriptionTextChangeListener,
         onDoneClickListener = onDoneClickListener,
-        modifier = modifier
+        minLines = 2,
+        maxLines = 4,
+        modifier = modifier// .heightIn(min = LOGIN_CONTAINER_HEIGHT.dp)
     )
 }

@@ -3,6 +3,13 @@
     <string name="title_label">Title</string>
     <string name="title_placeholder">Title</string>
     <string name="description_label">Details</string>
+    <string name="tag_label">Tag</string>
     <string name="description_placeholder">Details</string>
     <string name="submit_button_title">Submit</string>
+
+    <string-array name="note_types">
+        <item>General</item>
+        <item>Quote</item>
+        <item>Metaphor</item>
+    </string-array>
 </resources>

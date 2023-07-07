@@ -2,8 +2,6 @@ package com.mvi.sharednotes.creation.view.composables
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -16,7 +14,6 @@ import com.mvi.sharednotes.creation.R
 import com.mvi.sharednotes.creation.view.attributes.State
 import com.mvi.sharednotes.ui.core.BaseOutlinedTextField
 import com.mvi.sharednotes.ui.core.NO_ROUND_CORNER
-import com.mvi.sharednotes.ui.core.ROUND_CORNER
 
 @Composable
 fun TitleField(state: State, modifier: Modifier, titleTextChangeListener: (String) -> Unit) {
@@ -24,17 +21,12 @@ fun TitleField(state: State, modifier: Modifier, titleTextChangeListener: (Strin
     BaseOutlinedTextField(
         state.title,
         state.isLoading,
-        state.hasError,
+        state.isTitleError,
         state.errorMessage,
         stringResource(id = R.string.title_label),
         stringResource(id = R.string.title_placeholder),
-        Icons.Default.Email,
-        RoundedCornerShape(
-            ROUND_CORNER.dp,
-            ROUND_CORNER.dp,
-            NO_ROUND_CORNER.dp,
-            NO_ROUND_CORNER.dp
-        ),
+        null,
+        RoundedCornerShape(NO_ROUND_CORNER.dp),
         KeyboardOptions(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next
