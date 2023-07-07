@@ -6,4 +6,8 @@ data class LocalPostEntity(
     val tag: String,
     val title: String?,
     val description: String?
-)
+) {
+    companion object {
+        const val UNKNOWN = "Unknown"
+    }
+}
