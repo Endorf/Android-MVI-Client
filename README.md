@@ -6,5 +6,7 @@ This Android native application is used as a sandbox demo to test or just to pla
 The sample is based on **MVI** pattern.
 
 <p align="center">
-<img src="/docs/preview.png" width="200" alt="Application Preview" hspace="20">
+<img src="/docs/login.png" width="200" alt="Login Preview" hspace="20">
+<img src="/docs/list.png" width="200" alt="List Preview" hspace="20">
+<img src="/docs/creation.png" width="200" alt="Note Creation Preview" hspace="20">
 </p>
