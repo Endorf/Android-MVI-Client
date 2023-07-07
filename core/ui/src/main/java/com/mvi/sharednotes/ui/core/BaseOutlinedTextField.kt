@@ -32,6 +32,8 @@ fun BaseOutlinedTextField(
     userInputHandler: (String) -> Unit = {},
     onDoneClickListener: () -> Unit = {},
     onNextClickListener: () -> Unit = {},
+    minLines: Int = 1,
+    maxLines: Int = 1,
     modifier: Modifier
 ) {
     var content by remember { mutableStateOf(TextFieldValue(value)) }
@@ -40,6 +42,9 @@ fun BaseOutlinedTextField(
         enabled = !isLoading,
         modifier = modifier,
         isError = hasError,
+        minLines = minLines,
+        maxLines = maxLines,
+        singleLine = maxLines == 1,
         supportingText = {
             if (hasError) {
                 Text(
@@ -51,15 +56,17 @@ fun BaseOutlinedTextField(
         },
         shape = shape,
         value = content,
-        leadingIcon = { icon?.let { Icon(imageVector = icon, contentDescription = null) } },
+        leadingIcon = icon?.let { { Icon(imageVector = icon, contentDescription = null) } },
         keyboardOptions = keyboardOptions,
         keyboardActions = KeyboardActions(
             onDone = { onDoneClickListener() },
             onNext = { onNextClickListener() }
         ),
         onValueChange = { newContent ->
-            content = newContent
-            userInputHandler(newContent.text)
+            if (newContent.text.lines().size <= maxLines) {
+                content = newContent
+                userInputHandler(newContent.text)
+            }
         },
         label = { Text(text = label) },
         placeholder = { Text(text = placeholder) }
