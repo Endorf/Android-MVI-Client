@@ -99,15 +99,18 @@ fun ContentBlock(title: String, description: String) {
         Modifier.padding(TITLE_HORIZONTAL_PADDING.dp, PADDING.dp),
         style = MaterialTheme.typography.titleMedium
     )
-    Divider(
-        color = MaterialTheme.colorScheme.outline,
-        modifier = Modifier
-            .fillMaxWidth()
-            .width(DIVIDER_HEIGHT.dp)
-    )
-    Text(
-        description,
-        style = MaterialTheme.typography.bodySmall,
-        fontStyle = FontStyle.Italic
-    )
+
+    if (description.isNotEmpty()) {
+        Divider(
+            color = MaterialTheme.colorScheme.outline,
+            modifier = Modifier
+                .fillMaxWidth()
+                .width(DIVIDER_HEIGHT.dp)
+        )
+        Text(
+            description,
+            style = MaterialTheme.typography.bodySmall,
+            fontStyle = FontStyle.Italic
+        )
+    }
 }

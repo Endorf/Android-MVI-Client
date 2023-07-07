@@ -1,6 +1,5 @@
 package com.mvi.sharednotes.ui.core
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -14,19 +13,19 @@ import androidx.compose.ui.unit.dp
 fun BaseButton(
     isLoading: Boolean,
     title: String,
-    onClickListener: () -> Unit,
-    modifier: Modifier
+    modifier: Modifier,
+    shape: RoundedCornerShape,
+    onClickListener: () -> Unit
 ) {
     Button(
         modifier = modifier,
         enabled = !isLoading,
-        onClick = { onClickListener() },
-        shape = RoundedCornerShape(5.dp)
+        onClick = onClickListener,
+        shape = shape
     ) {
         Text(
             text = title,
             modifier = modifier
-                .fillMaxSize()
                 .padding(8.dp),
             textAlign = TextAlign.Center
         )

@@ -20,14 +20,14 @@ fun BaseFloatingActionButton(
 ) {
     FloatingActionButton(
         onClick = onClick,
-        containerColor = MaterialTheme.colorScheme.secondary,
+        containerColor = MaterialTheme.colorScheme.tertiary,
         modifier = modifier,
         shape = RoundedCornerShape(FAB_CORNER_SHAPE.dp)
     ) {
         Icon(
             imageVector = imageVector,
             contentDescription = contentDescription,
-            tint = MaterialTheme.colorScheme.onSecondary
+            tint = MaterialTheme.colorScheme.onTertiary
         )
     }
 }

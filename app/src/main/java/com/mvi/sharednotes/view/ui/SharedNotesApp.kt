@@ -1,6 +1,5 @@
 package com.mvi.sharednotes.view.ui
 
-import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.slideInVertically
@@ -29,10 +28,15 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.mvi.sharednotes.R
+import com.mvi.sharednotes.creation.CreationScreen
 import com.mvi.sharednotes.login.LoginScreen
 import com.mvi.sharednotes.notes.NotesScreen
 import com.mvi.sharednotes.theme.TopAppBarColor
 import com.mvi.sharednotes.view.attributes.State
+import com.mvi.sharednotes.view.ui.animation.enterTransition
+import com.mvi.sharednotes.view.ui.animation.exitTransition
+import com.mvi.sharednotes.view.ui.animation.popEnterTransition
+import com.mvi.sharednotes.view.ui.animation.popExitTransition
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -43,8 +47,6 @@ fun SharedNotesApp(state: State) {
         state = state
     )
 }
-
-private const val INITIAL_OFFSET_X = 1500
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -59,6 +61,7 @@ fun SharedNotesNavHost(
         } else {
             Route.LOGIN.name
         }
+
         State.Loading -> return
     }
     val onNoteListEnter = {
@@ -68,6 +71,9 @@ fun SharedNotesNavHost(
             }
         }
     }
+    val onCreationEnter = {
+        navController.navigate(Route.CREATION.name)
+    }
 
     val backStackEntry by navController.currentBackStackEntryAsState()
 
@@ -75,13 +81,15 @@ fun SharedNotesNavHost(
         backStackEntry?.destination?.route ?: Route.HOME.name
     )
 
+    val navigateUp: () -> Unit = { navController.navigateUp() }
+
     Scaffold(
         containerColor = MaterialTheme.colorScheme.primaryContainer,
         topBar = {
             SharedNotesAppBar(
                 currentScreen,
                 canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() }
+                navigateUp = navigateUp
             )
         }
     ) {
@@ -89,10 +97,14 @@ fun SharedNotesNavHost(
             navController = navController,
             startDestination = startDestination,
             modifier = modifier.padding(it),
-            enterTransition = { slideInHorizontally(initialOffsetX = { INITIAL_OFFSET_X }) }
+            enterTransition = { enterTransition() },
+            exitTransition = { exitTransition() },
+            popEnterTransition = { popEnterTransition() },
+            popExitTransition = { popExitTransition() }
         ) {
             composable(Route.LOGIN.name) { LoginScreen(hiltViewModel(), onNoteListEnter) }
-            composable(Route.HOME.name) { NotesScreen(hiltViewModel()) }
+            composable(Route.HOME.name) { NotesScreen(hiltViewModel(), onCreationEnter) }
+            composable(Route.CREATION.name) { CreationScreen(hiltViewModel(), navigateUp) }
         }
     }
 }

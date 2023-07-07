@@ -9,7 +9,7 @@ import com.mvi.sharednotes.storage.db.entity.DbNoteEntity
 @Dao
 interface NoteDao {
 
-    @Query("SELECT * FROM note")
+    @Query("SELECT * FROM note ORDER BY row_id DESC")
     fun read(): List<DbNoteEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

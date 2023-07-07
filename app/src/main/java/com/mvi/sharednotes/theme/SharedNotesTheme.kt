@@ -1,17 +1,13 @@
 package com.mvi.sharednotes.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -20,12 +16,16 @@ fun SharedNotesTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+
+    /* TODO: Update color scheme according to dynamicColorScheme
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         val context = LocalContext.current
         if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     } else {
         if (darkTheme) DarkColorScheme else LightColorScheme
     }
+     */
 
     val systemUiController = rememberSystemUiController()
     DisposableEffect(systemUiController, darkTheme) {
@@ -70,8 +70,8 @@ internal val DarkColorScheme = darkColorScheme(
     onSecondary = DarkBlue20,
     secondaryContainer = ExperimentalColorSecondaryContainer,
     onSecondaryContainer = DarkBlue90,
-    tertiary = Yellow80,
-    onTertiary = Yellow20,
+    tertiary = ExperimentalTertiaryDark,
+    onTertiary = Color.White,
     tertiaryContainer = Yellow30,
     onTertiaryContainer = Yellow90,
     error = ExperimentalColorError,
@@ -99,8 +99,8 @@ internal val LightColorScheme = lightColorScheme(
     onSecondary = Color.White,
     secondaryContainer = ExperimentalColorSecondaryContainer,
     onSecondaryContainer = DarkBlue10,
-    tertiary = Yellow40,
-    onTertiary = Color.White,
+    tertiary = ExperimentalTertiary,
+    onTertiary = ExperimentalOnTertiary,
     tertiaryContainer = Yellow90,
     onTertiaryContainer = Yellow10,
     error = ExperimentalColorError,

@@ -4,8 +4,9 @@ import com.mvi.sharednotes.notes.attributes.Action
 import com.mvi.sharednotes.notes.attributes.Effect
 import com.mvi.sharednotes.notes.attributes.State
 import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
 
-class Reducer {
+class Reducer @Inject constructor() {
 
     fun sendEvent(
         state: MutableStateFlow<State>,
