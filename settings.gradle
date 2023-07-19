@@ -44,7 +44,7 @@ dependencyResolutionManagement {
             //region room
             library('androidx-room', 'androidx.room:room-runtime:2.5.0')
             library('androidx-room-ktx', 'androidx.room:room-ktx:2.5.2')
-            library('androidx-room-compiler', 'androidx.room:room-compiler:2.5.1')
+            library('androidx-room-compiler', 'androidx.room:room-compiler:2.5.2')
             //endregion
             library('androidx-datastore-preferences', 'androidx.datastore:datastore-preferences:1.0.0')
         }
