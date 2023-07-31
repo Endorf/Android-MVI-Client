@@ -54,7 +54,7 @@ dependencyResolutionManagement {
             library('androidx-junit', 'androidx.test.ext:junit:1.1.5')
             library('mockk', 'io.mockk:mockk:1.13.5')
             library('mockito-core', 'org.mockito:mockito-core:5.4.0')
-            library('kotlinx-coroutines-test', 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4')
+            library('kotlinx-coroutines-test', 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3')
             library('androidx-espresso-core', 'androidx.test.espresso:espresso-core:3.5.1')
             library('androidx-compose-ui-test-junit4', 'androidx.compose.ui:ui-test-junit4:1.4.3')
         }
