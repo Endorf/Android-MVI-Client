@@ -5,5 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserCredentials(
-    val email: String
+    val email: String,
+    val password: String = "1234"   // TODO: add password field
 ) : Parcelable
