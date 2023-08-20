@@ -1,6 +1,6 @@
 package com.mvi.sharednotes.network.data.storage
 
-import com.mvi.sharednotes.network.data.api.user.entity.RemotePostEntity
+import com.mvi.sharednotes.network.data.api.post.entity.RemotePostEntity
 import kotlinx.coroutines.flow.Flow
 
 interface RemotePostDataStore {
