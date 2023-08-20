@@ -1,4 +1,4 @@
-package com.mvi.sharednotes.network.data.api.user.entity
+package com.mvi.sharednotes.network.data.api.post.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

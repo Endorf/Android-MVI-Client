@@ -1,6 +1,6 @@
-package com.mvi.sharednotes.network.data.api.user
+package com.mvi.sharednotes.network.data.api.post
 
-import com.mvi.sharednotes.network.data.api.user.entity.RemotePostEntity
+import com.mvi.sharednotes.network.data.api.post.entity.RemotePostEntity
 import retrofit2.http.GET
 import retrofit2.http.Path
 
