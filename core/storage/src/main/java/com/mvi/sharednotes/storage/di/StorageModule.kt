@@ -2,6 +2,7 @@ package com.mvi.sharednotes.storage.di
 
 import android.content.Context
 import androidx.room.Room
+import com.mvi.sharednotes.storage.AuthDataStore
 import com.mvi.sharednotes.storage.NoteDataStore
 import com.mvi.sharednotes.storage.UserDataStore
 import com.mvi.sharednotes.storage.db.LocalNoteDataStore
@@ -12,7 +13,8 @@ import com.mvi.sharednotes.storage.db.dao.NoteDao
 import com.mvi.sharednotes.storage.db.dao.UserDao
 import com.mvi.sharednotes.storage.di.qualifier.Local
 import com.mvi.sharednotes.storage.di.qualifier.Shared
-import com.mvi.sharednotes.storage.preferences.SharedUserDataStore
+import com.mvi.sharednotes.storage.preferences.SharedAuthDataStoreImpl
+import com.mvi.sharednotes.storage.preferences.SharedUserDataStoreImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,10 +29,14 @@ class StorageModule {
     @Provides
     @Shared
     @Singleton
-    fun providePreferenceDataStore(@ApplicationContext context: Context): UserDataStore =
-        SharedUserDataStore(
-            context
-        )
+    fun providePreferenceTokenDataStore(@ApplicationContext context: Context): AuthDataStore =
+        SharedAuthDataStoreImpl(context)
+
+    @Provides
+    @Shared
+    @Singleton
+    fun providePreferenceUserDataStore(@ApplicationContext context: Context): UserDataStore =
+        SharedUserDataStoreImpl(context)
 
     @Provides
     @Singleton
