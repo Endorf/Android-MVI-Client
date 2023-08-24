@@ -6,6 +6,7 @@ import retrofit2.http.Path
 
 interface PostApi {
 
+    // TODO: handle new path
     @GET("posts")
     suspend fun get(): List<RemotePostEntity>
 
