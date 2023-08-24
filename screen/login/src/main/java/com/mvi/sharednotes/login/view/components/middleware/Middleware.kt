@@ -2,6 +2,7 @@ package com.mvi.sharednotes.login.view.components.middleware
 
 import androidx.core.util.PatternsCompat
 import com.mvi.sharednotes.login.data.Repository
+import com.mvi.sharednotes.login.exception.AuthorizationException
 import com.mvi.sharednotes.login.exception.EmailNotValidException
 import com.mvi.sharednotes.login.view.attributes.Event
 import com.mvi.sharednotes.login.view.attributes.Action
@@ -37,18 +38,11 @@ class Middleware @Inject constructor(
 
             val credentials = UserCredentials(state.email)
 
-            repository.get(credentials)
-                .catch {
-                    emitAction(Action.Loading)
-                    repository.create(credentials)
-                        .catch {
-                            emitAction(Action.Error(it))
-                        }.collect {
-                            emitAction(Action.SignedIn(it.email))
-                        }
-                }.collect {
-                    emitAction(Action.SignedIn(it.email))
-                }
+            repository.signIn(credentials).catch {
+                emitAction(Action.Error(it))
+            }.collect {
+                emitAction(Action.SignedIn(it.email))
+            }
         }
     }
 
