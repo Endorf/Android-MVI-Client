@@ -6,7 +6,13 @@ interface AuthDataStore {
 
     suspend fun put(data: AuthenticationEntity)
 
-    suspend fun getAccessToken(): String
+    suspend fun clear()
 
-    suspend fun getRefreshToken(): String
+    suspend fun getAccessToken(): String?
+
+    suspend fun hasAccessTokenExpired(): Boolean
+
+    suspend fun getRefreshToken(): String?
+
+    suspend fun hasRefreshTokenExpired(): Boolean
 }

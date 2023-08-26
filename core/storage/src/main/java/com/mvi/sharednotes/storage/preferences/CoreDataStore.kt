@@ -21,10 +21,14 @@ abstract class CoreDataStore<T>(
         }
     }
 
-    protected suspend fun get(key: Preferences.Key<*>): Any {
+    protected suspend fun clearStorage() {
+        context.dataStore.edit { preferences -> preferences.clear() }
+    }
+
+    protected suspend fun get(key: Preferences.Key<*>): Any? {
         return context.dataStore.data
             .map { preferences ->
-                preferences[key] ?: ""
+                preferences[key]
             }.first()
     }
 
