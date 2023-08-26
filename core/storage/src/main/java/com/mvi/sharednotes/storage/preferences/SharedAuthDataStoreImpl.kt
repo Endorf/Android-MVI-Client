@@ -17,9 +17,9 @@ class SharedAuthDataStoreImpl @Inject constructor(
 
         put { preferences ->
             preferences[ACCESS_TOKEN_KEY] = data.access_token
-            preferences[ACCESS_TOKEN_EXP_KEY] = currentTime + data.expires_in.toLong()
+            preferences[ACCESS_TOKEN_EXP_KEY] = currentTime + data.expiresInMillis
             preferences[REFRESH_TOKEN_KEY] = data.refresh_token
-            preferences[REFRESH_TOKEN_EXP_KEY] = currentTime + data.refresh_expires_in.toLong()
+            preferences[REFRESH_TOKEN_EXP_KEY] = currentTime + data.refreshExpiresInInMillis
         }
     }
 
