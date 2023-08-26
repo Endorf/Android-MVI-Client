@@ -2,8 +2,8 @@ package com.mvi.sharednotes.login.data
 
 import com.mvi.sharednotes.login.data.entity.User
 import com.mvi.sharednotes.login.data.entity.mapper.toLocalEntity
+import com.mvi.sharednotes.login.data.entity.mapper.toLocalUserEntity
 import com.mvi.sharednotes.login.data.entity.mapper.toUser
-import com.mvi.sharednotes.login.exception.AuthorizationException
 import com.mvi.sharednotes.login.view.entity.UserCredentials
 import com.mvi.sharednotes.network.data.api.auth.entity.AuthenticationRequest
 import com.mvi.sharednotes.network.data.api.auth.entity.AuthenticationResponse
@@ -26,26 +26,20 @@ class LoginRepository @Inject constructor(
 ) : Repository {
 
     override suspend fun signIn(credentials: UserCredentials): Flow<User> = flow {
-        // TODO: move to interceptor
-        val tokenData = provideAuthData(credentials.email, credentials.password)
-        val user = provideUser(tokenData)
+        provideAuthData(credentials.email, credentials.password)
 
-        emit(user)
+        remoteUserDataStore.getCurrentUser()
+            .also { sharedUserDataStore.put(it.toLocalUserEntity()) }
+            .also { emit(it.toUser()) }
     }
 
-    private suspend fun provideAuthData(email: String, password: String): AuthenticationResponse {
+    private suspend fun provideAuthData(email: String, password: String) {
         val accessTokenResponse: AuthenticationResponse? = remoteAuthDataStore.signIn(
             AuthenticationRequest(email, password)
         ).getOrNull()
 
         accessTokenResponse?.toLocalEntity()?.let {
             sharedAuthDataStore.put(it)
-        } ?: throw AuthorizationException()
-
-        return accessTokenResponse
-    }
-
-    private suspend fun provideUser(tokenData: AuthenticationResponse): User {
-        return remoteUserDataStore.getCurrentUser(tokenData.access_token).toUser()
+        } ?: sharedAuthDataStore.clear()
     }
 }
