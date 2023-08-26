@@ -6,5 +6,5 @@ interface RemoteUserDataStore {
 
     suspend fun create(user: RemoteUserEntity): RemoteUserEntity
 
-    suspend fun getCurrentUser(accessToken: String): RemoteUserEntity
+    suspend fun getCurrentUser(): RemoteUserEntity
 }
