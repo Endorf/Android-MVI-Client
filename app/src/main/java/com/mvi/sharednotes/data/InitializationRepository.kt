@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class InitializationRepository @Inject constructor(
-    @Shared private val sharedDataStore: UserDataStore
+    @Shared private val sharedDataStore: UserDataStore // TODO: check user by using remoteUserDataStore
 ) : Repository {
 
     override fun get(): Flow<User?> = flow {
