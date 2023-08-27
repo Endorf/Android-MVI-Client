@@ -35,7 +35,7 @@ class SharedAuthDataStoreImpl @Inject constructor(
         return expTime < currentTime
     }
 
-    override suspend fun getRefreshToken(): String? = get(ACCESS_TOKEN_KEY) as? String
+    override suspend fun getRefreshToken(): String? = get(REFRESH_TOKEN_KEY) as? String
 
     override suspend fun hasRefreshTokenExpired(): Boolean {
         val expTime = get(REFRESH_TOKEN_EXP_KEY) as? Long ?: 0
