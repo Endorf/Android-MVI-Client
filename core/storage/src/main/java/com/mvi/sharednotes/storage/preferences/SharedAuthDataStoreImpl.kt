@@ -16,9 +16,9 @@ class SharedAuthDataStoreImpl @Inject constructor(
         val currentTime = System.currentTimeMillis()
 
         put { preferences ->
-            preferences[ACCESS_TOKEN_KEY] = data.access_token
+            preferences[ACCESS_TOKEN_KEY] = data.accessToken
             preferences[ACCESS_TOKEN_EXP_KEY] = currentTime + data.expiresInMillis
-            preferences[REFRESH_TOKEN_KEY] = data.refresh_token
+            preferences[REFRESH_TOKEN_KEY] = data.refreshToken
             preferences[REFRESH_TOKEN_EXP_KEY] = currentTime + data.refreshExpiresInInMillis
         }
     }

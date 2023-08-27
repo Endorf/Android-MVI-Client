@@ -44,5 +44,4 @@ class SharedUserDataStoreImpl @Inject constructor(
 
         private const val NONE_USER_ID = -1
     }
-
 }

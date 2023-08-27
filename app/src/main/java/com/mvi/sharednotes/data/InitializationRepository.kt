@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class InitializationRepository @Inject constructor(
     private val remoteUserDataStore: RemoteUserDataStore,
-    @Shared private val sharedUserDataStore: UserDataStore,
+    @Shared private val sharedUserDataStore: UserDataStore
 ) : Repository {
 
     override fun get(): Flow<User?> = flow {

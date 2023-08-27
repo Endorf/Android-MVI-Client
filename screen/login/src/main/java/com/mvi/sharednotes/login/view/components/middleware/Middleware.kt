@@ -2,7 +2,6 @@ package com.mvi.sharednotes.login.view.components.middleware
 
 import androidx.core.util.PatternsCompat
 import com.mvi.sharednotes.login.data.Repository
-import com.mvi.sharednotes.login.exception.AuthorizationException
 import com.mvi.sharednotes.login.exception.EmailNotValidException
 import com.mvi.sharednotes.login.view.attributes.Event
 import com.mvi.sharednotes.login.view.attributes.Action

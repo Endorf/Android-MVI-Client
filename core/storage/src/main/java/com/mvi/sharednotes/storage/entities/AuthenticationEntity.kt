@@ -1,19 +1,21 @@
 package com.mvi.sharednotes.storage.entities
 
+import java.util.concurrent.TimeUnit
+
 data class AuthenticationEntity(
-    val access_token: String,
-    val expires_in: Int,
-    val refresh_token: String,
-    val refresh_expires_in: Int
+    val accessToken: String,
+    val expiresIn: Int,
+    val refreshToken: String,
+    val refreshExpiresIn: Int
 ) {
 
     val expiresInMillis: Long
         get() {
-            return expires_in.toLong() * 1000
+            return TimeUnit.SECONDS.toMillis(expiresIn.toLong())
         }
 
     val refreshExpiresInInMillis: Long
         get() {
-            return refresh_expires_in.toLong() * 1000
+            return TimeUnit.SECONDS.toMillis(refreshExpiresIn.toLong())
         }
 }

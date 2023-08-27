@@ -9,11 +9,14 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
+@Suppress("UnnecessaryAbstractClass")
 abstract class CoreDataStore<T>(
     private val context: Context,
     preferencesDataStoreName: String
 ) {
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = preferencesDataStoreName)
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+        name = preferencesDataStoreName
+    )
 
     protected suspend fun put(storage: (preferences: MutablePreferences) -> Unit) {
         context.dataStore.edit { preferences ->

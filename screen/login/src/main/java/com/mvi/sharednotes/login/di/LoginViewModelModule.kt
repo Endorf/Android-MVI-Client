@@ -1,6 +1,5 @@
 package com.mvi.sharednotes.login.di
 
-import android.content.Context
 import com.mvi.sharednotes.login.data.Repository
 import com.mvi.sharednotes.login.view.components.Reducer
 import com.mvi.sharednotes.login.view.components.middleware.LoggerMiddleware

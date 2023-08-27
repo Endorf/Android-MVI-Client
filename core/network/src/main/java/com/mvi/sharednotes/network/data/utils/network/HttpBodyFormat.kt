@@ -14,4 +14,3 @@ internal enum class HttpBodyFormat {
         }.toMediaType()
     }
 }
-

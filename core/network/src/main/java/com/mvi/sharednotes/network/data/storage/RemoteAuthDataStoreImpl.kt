@@ -3,6 +3,7 @@ package com.mvi.sharednotes.network.data.storage
 import com.mvi.sharednotes.network.data.api.auth.AuthApi
 import com.mvi.sharednotes.network.data.api.auth.entity.AuthenticationRequest
 import com.mvi.sharednotes.network.data.api.auth.entity.AuthenticationResponse
+import java.net.HttpURLConnection
 import javax.inject.Inject
 
 class RemoteAuthDataStoreImpl @Inject constructor(
@@ -14,8 +15,11 @@ class RemoteAuthDataStoreImpl @Inject constructor(
 
         // TODO: update error handling
         return when (response.code()) {
-            401 -> Result.failure(NullPointerException("some network error"))
-            200 -> Result.success(response.body()!!)
+            HttpURLConnection.HTTP_UNAUTHORIZED -> Result.failure(
+                NullPointerException("some network error")
+            )
+
+            HttpURLConnection.HTTP_OK -> Result.success(response.body()!!)
             else -> Result.failure(NullPointerException("something went wrong"))
         }
     }
