@@ -1,4 +1,4 @@
-package com.mvi.sharednotes.login.data.entity.mapper
+package com.mvi.sharednotes.network.data.api.auth.entity.mapper
 
 import com.mvi.sharednotes.network.data.api.auth.entity.AuthenticationResponse
 import com.mvi.sharednotes.storage.entities.AuthenticationEntity

@@ -1,7 +1,7 @@
 package com.mvi.sharednotes.login.data
 
 import com.mvi.sharednotes.login.data.entity.User
-import com.mvi.sharednotes.login.data.entity.mapper.toLocalEntity
+import com.mvi.sharednotes.network.data.api.auth.entity.mapper.toLocalEntity
 import com.mvi.sharednotes.login.data.entity.mapper.toLocalUserEntity
 import com.mvi.sharednotes.login.data.entity.mapper.toUser
 import com.mvi.sharednotes.login.view.entity.UserCredentials
@@ -11,7 +11,6 @@ import com.mvi.sharednotes.network.data.storage.RemoteAuthDataStore
 import com.mvi.sharednotes.network.data.storage.RemoteUserDataStore
 import com.mvi.sharednotes.storage.AuthDataStore
 import com.mvi.sharednotes.storage.UserDataStore
-import com.mvi.sharednotes.storage.di.qualifier.Local
 import com.mvi.sharednotes.storage.di.qualifier.Shared
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -20,7 +19,6 @@ import javax.inject.Inject
 class LoginRepository @Inject constructor(
     private val remoteAuthDataStore: RemoteAuthDataStore,
     private val remoteUserDataStore: RemoteUserDataStore,
-    @Local private val localDataStore: UserDataStore,
     @Shared private val sharedUserDataStore: UserDataStore,
     @Shared private val sharedAuthDataStore: AuthDataStore
 ) : Repository {
