@@ -15,4 +15,6 @@ interface AuthDataStore {
     suspend fun getRefreshToken(): String?
 
     suspend fun hasRefreshTokenExpired(): Boolean
+
+    suspend fun isAuthorized(): Boolean
 }

@@ -43,6 +43,8 @@ class SharedAuthDataStoreImpl @Inject constructor(
         return expTime < currentTime
     }
 
+    override suspend fun isAuthorized(): Boolean = has(REFRESH_TOKEN_EXP_KEY)
+
     private companion object {
 
         private const val STORAGE_NAME = BuildConfig.DS_NAME + "_auth"

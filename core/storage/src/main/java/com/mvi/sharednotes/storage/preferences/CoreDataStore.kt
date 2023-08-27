@@ -36,4 +36,9 @@ abstract class CoreDataStore<T>(
         context.dataStore.data.map { preferences ->
             storage(preferences)
         }.first()
+
+    protected suspend fun has(key: Preferences.Key<*>) = context.dataStore.data
+        .map { preferences ->
+            preferences.contains(key)
+        }.first()
 }
