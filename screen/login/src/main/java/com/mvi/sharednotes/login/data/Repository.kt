@@ -6,7 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
-    suspend fun get(credentials: UserCredentials): Flow<User>
-
-    suspend fun create(credentials: UserCredentials): Flow<User>
+    suspend fun signIn(credentials: UserCredentials): Flow<User>
 }

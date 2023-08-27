@@ -37,18 +37,11 @@ class Middleware @Inject constructor(
 
             val credentials = UserCredentials(state.email)
 
-            repository.get(credentials)
-                .catch {
-                    emitAction(Action.Loading)
-                    repository.create(credentials)
-                        .catch {
-                            emitAction(Action.Error(it))
-                        }.collect {
-                            emitAction(Action.SignedIn(it.email))
-                        }
-                }.collect {
-                    emitAction(Action.SignedIn(it.email))
-                }
+            repository.signIn(credentials).catch {
+                emitAction(Action.Error(it))
+            }.collect {
+                emitAction(Action.SignedIn(it.email))
+            }
         }
     }
 

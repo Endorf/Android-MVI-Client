@@ -62,6 +62,7 @@ dependencies {
     implementation projects.screen.notes
     implementation projects.screen.creation
     implementation projects.core.storage
+    implementation projects.core.network
     //endregion
     //region Hilt
     implementation general.hilt

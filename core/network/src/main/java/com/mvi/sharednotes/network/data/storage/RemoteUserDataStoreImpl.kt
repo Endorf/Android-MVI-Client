@@ -10,5 +10,5 @@ class RemoteUserDataStoreImpl @Inject constructor(
 
     override suspend fun create(user: RemoteUserEntity) = api.create(user)
 
-    override suspend fun read(user: RemoteUserEntity) = api.get(user.id)
+    override suspend fun getCurrentUser() = api.getCurrentUser()
 }

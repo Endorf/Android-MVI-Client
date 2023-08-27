@@ -1,6 +1,6 @@
 package com.mvi.sharednotes.notes.data.mappers
 
-import com.mvi.sharednotes.network.data.api.user.entity.RemotePostEntity
+import com.mvi.sharednotes.network.data.api.post.entity.RemotePostEntity
 import com.mvi.sharednotes.notes.view.entity.Note
 
 // TODO: Fix on Backend

@@ -11,13 +11,11 @@ class LocalUserDataStore @Inject constructor(
     private val userDao: UserDao
 ) : UserDataStore {
 
-    override suspend fun create(user: LocalUserEntity) = user.toDbUserEntity().let {
+    override suspend fun put(user: LocalUserEntity) = user.toDbUserEntity().let {
         userDao.insert(it)
     }
 
     override suspend fun get(user: LocalUserEntity?) = user?.email?.let {
         userDao.read(user.email)
     }?.toLocalUserEntity()
-
-    override suspend fun update(user: LocalUserEntity) = TODO("Not yet implemented")
 }

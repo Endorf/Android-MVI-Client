@@ -1,5 +1,7 @@
 package com.mvi.sharednotes.network.di
 
+import com.mvi.sharednotes.network.data.storage.RemoteAuthDataStore
+import com.mvi.sharednotes.network.data.storage.RemoteAuthDataStoreImpl
 import com.mvi.sharednotes.network.data.storage.RemotePostDataStore
 import com.mvi.sharednotes.network.data.storage.RemotePostDataStoreImpl
 import com.mvi.sharednotes.network.data.storage.RemoteUserDataStore
@@ -13,6 +15,9 @@ import dagger.hilt.android.components.ViewModelComponent
 @Module
 @InstallIn(FragmentComponent::class, ViewModelComponent::class)
 interface RemoteDataStoreModule {
+
+    @Binds
+    fun provideAuthApi(dataStore: RemoteAuthDataStoreImpl): RemoteAuthDataStore
 
     @Binds
     fun provideUserApi(dataStore: RemoteUserDataStoreImpl): RemoteUserDataStore

@@ -47,6 +47,8 @@ android {
 }
 
 dependencies {
+    implementation projects.core.storage
+
     implementation general.androidx.core.ktx
     implementation jetpackCompose.androidx.activity
     //region Hilt

@@ -10,3 +10,8 @@ The sample is based on **MVI** pattern.
 <img src="/docs/list.png" width="200" alt="List Preview" hspace="20">
 <img src="/docs/creation.png" width="200" alt="Note Creation Preview" hspace="20">
 </p>
+
+> NOTE: The sample uses password authentication flow
+> which is better to use in a private environment to impersonate users.
+>
+> For public clients are better to use **Code Flow with Proof Key for Code Exchange** or **Client Initiated Backchannel Authentication**. 

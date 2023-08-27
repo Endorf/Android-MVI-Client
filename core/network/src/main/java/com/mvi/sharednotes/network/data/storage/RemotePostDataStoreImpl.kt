@@ -1,7 +1,7 @@
 package com.mvi.sharednotes.network.data.storage
 
-import com.mvi.sharednotes.network.data.api.user.PostApi
-import com.mvi.sharednotes.network.data.api.user.entity.RemotePostEntity
+import com.mvi.sharednotes.network.data.api.post.PostApi
+import com.mvi.sharednotes.network.data.api.post.entity.RemotePostEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
