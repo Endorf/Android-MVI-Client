@@ -3,7 +3,6 @@ plugins {
     id 'com.android.library' version '8.0.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
     id 'io.gitlab.arturbosch.detekt' version '1.22.0'
-    id 'org.jlleitschuh.gradle.ktlint' version '11.5.0'
     id 'com.google.dagger.hilt.android' version '2.47' apply false
 }
 
@@ -11,10 +10,9 @@ apply from: 'gradle/util.gradle'
 
 subprojects {
     apply plugin: "io.gitlab.arturbosch.detekt"
-    apply plugin: "org.jlleitschuh.gradle.ktlint"
 
     afterEvaluate {
-        if(it.hasProperty('android')){
+        if (it.hasProperty('android')) {
             android {
                 lintOptions {
                     checkDependencies true
@@ -32,13 +30,6 @@ subprojects {
         parallel = true
         config = files("$project.rootDir/.detekt/config.yml")
         baseline = file("$project.rootDir/.detekt/detekt-baseline.xml")
-    }
-
-    ktlint {
-        android.set(true)
-        outputColorName.set("RED")
-        outputToConsole.set(true)
-        disabledRules = ["final-newline", "import-ordering", "no-wildcard-imports"]
     }
 }
 
