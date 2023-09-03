@@ -6,4 +6,6 @@ import com.mvi.sharednotes.network.data.api.auth.entity.AuthenticationResponse
 interface RemoteAuthDataStore {
 
     suspend fun signIn(request: AuthenticationRequest): Result<AuthenticationResponse>
+
+    suspend fun logout(token: String): Result<*>
 }

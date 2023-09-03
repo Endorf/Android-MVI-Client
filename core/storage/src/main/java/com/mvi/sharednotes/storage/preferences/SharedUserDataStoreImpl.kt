@@ -12,6 +12,10 @@ class SharedUserDataStoreImpl @Inject constructor(
     context: Context
 ) : CoreDataStore<LocalUserEntity>(context, STORAGE_NAME), UserDataStore {
 
+    override suspend fun clean() {
+        clearStorage()
+    }
+
     override suspend fun put(user: LocalUserEntity) {
         put { preferences ->
             preferences[ID_KEY] = user.userId
