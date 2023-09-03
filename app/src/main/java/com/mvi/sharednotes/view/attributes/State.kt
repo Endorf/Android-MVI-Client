@@ -1,8 +1,16 @@
 package com.mvi.sharednotes.view.attributes
 
-sealed interface State {
-
-    object Loading : State
-
-    data class Initialized(val isUserAuthenticated: Boolean = false) : State
+data class State(
+    val isLoading: Boolean,
+    val hasError: Boolean,
+    val isUserAuthenticated: Boolean,
+) {
+    companion object {
+        fun create() =
+            State(
+                isLoading = false,
+                hasError = false,
+                isUserAuthenticated = false
+            )
+    }
 }

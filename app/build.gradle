@@ -82,6 +82,8 @@ dependencies {
     implementation jetpackCompose.androidx.material3
     debugImplementation jetpackCompose.androidx.ui.tooling
     debugImplementation jetpackCompose.androidx.ui.test.manifest
+    implementation jetpackCompose.androidx.lifecycle.runtime
+    implementation jetpackCompose.androidx.lifecycle.viewmodel
     //endregion
     testImplementation tests.junit
     androidTestImplementation tests.junit
