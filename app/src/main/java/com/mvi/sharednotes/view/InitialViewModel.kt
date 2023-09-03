@@ -17,10 +17,14 @@ class InitialViewModel @Inject constructor(
 ) : ViewModel() {
 
     val state: StateFlow<State> = repository.get().map { user ->
-        State.Initialized(user != null && user.userId > 0)
+        State(
+            isLoading = false,
+            hasError = false,
+            isUserAuthenticated = user != null && user.userId > 0
+        )
     }.stateIn(
         scope = viewModelScope,
-        initialValue = State.Loading,
+        initialValue = State(isLoading = true, hasError = false, isUserAuthenticated = false),
         started = SharingStarted.WhileSubscribed(TIMEOUT)
     )
 

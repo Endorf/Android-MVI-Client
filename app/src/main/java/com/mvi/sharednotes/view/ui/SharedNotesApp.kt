@@ -1,37 +1,24 @@
 package com.mvi.sharednotes.view.ui
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.mvi.sharednotes.R
 import com.mvi.sharednotes.creation.CreationScreen
 import com.mvi.sharednotes.login.LoginScreen
 import com.mvi.sharednotes.notes.NotesScreen
-import com.mvi.sharednotes.theme.TopAppBarColor
 import com.mvi.sharednotes.view.attributes.State
 import com.mvi.sharednotes.view.ui.animation.enterTransition
 import com.mvi.sharednotes.view.ui.animation.exitTransition
@@ -55,25 +42,15 @@ fun SharedNotesNavHost(
     modifier: Modifier = Modifier,
     state: State
 ) {
-    val startDestination = when (state) {
-        is State.Initialized -> if (state.isUserAuthenticated) {
-            Route.HOME.name
-        } else {
-            Route.LOGIN.name
-        }
+    val startDestination = when {
+        state.isLoading -> return
+        state.isUserAuthenticated -> Route.HOME.name
+        else -> Route.LOGIN.name
+    }
 
-        State.Loading -> return
-    }
-    val onNoteListEnter = {
-        navController.navigate(Route.HOME.name) {
-            popUpTo(Route.LOGIN.name) {
-                inclusive = true
-            }
-        }
-    }
-    val onCreationEnter = {
-        navController.navigate(Route.CREATION.name)
-    }
+    val onNoteListEnter = { getNoteListNavigation(navController) }
+    val onLoginEnter = { getLoginNavigation(navController) }
+    val onCreationEnter = { navController.navigate(Route.CREATION.name) }
 
     val backStackEntry by navController.currentBackStackEntryAsState()
 
@@ -83,13 +60,23 @@ fun SharedNotesNavHost(
 
     val navigateUp: () -> Unit = { navController.navigateUp() }
 
+    var showLogoutDialog by rememberSaveable { mutableStateOf(false) }
+
+    if (showLogoutDialog) {
+        LogoutDialog(
+            onDismiss = { showLogoutDialog = false },
+            onLogout = onLoginEnter
+        )
+    }
+
     Scaffold(
         containerColor = MaterialTheme.colorScheme.primaryContainer,
         topBar = {
             SharedNotesAppBar(
                 currentScreen,
                 canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = navigateUp
+                navigateUp = navigateUp,
+                onLogoutAction = { showLogoutDialog = true }
             )
         }
     ) {
@@ -109,36 +96,16 @@ fun SharedNotesNavHost(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun SharedNotesAppBar(
-    appBarInfo: Route,
-    canNavigateBack: Boolean,
-    navigateUp: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    AnimatedVisibility(
-        visible = appBarInfo.topBarVisibility,
-        enter = slideInVertically(initialOffsetY = { -it }),
-        exit = slideOutVertically(targetOffsetY = { -it }),
-        content = {
-            CenterAlignedTopAppBar(
-                title = { Text(stringResource(appBarInfo.titleResId)) },
-                modifier = modifier
-                    .shadow(14.dp)
-                    .zIndex(1f),
-                navigationIcon = {
-                    if (canNavigateBack) {
-                        IconButton(onClick = navigateUp) {
-                            Icon(
-                                imageVector = Icons.Filled.ArrowBack,
-                                contentDescription = stringResource(R.string.app_name)
-                            )
-                        }
-                    }
-                },
-                colors = TopAppBarColor.centerAlignedTopAppBarColors()
-            )
+private fun getNoteListNavigation(navController: NavHostController) =
+    navController.navigate(Route.HOME.name) {
+        popUpTo(Route.LOGIN.name) {
+            inclusive = true
         }
-    )
-}
+    }
+
+private fun getLoginNavigation(navController: NavHostController) =
+    navController.navigate(Route.LOGIN.name) {
+        popUpTo(Route.HOME.name) {
+            inclusive = true
+        }
+    }
