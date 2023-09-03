@@ -33,7 +33,13 @@ class ShareNotesActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
-        var state: State by mutableStateOf(State.Loading)
+        var state: State by mutableStateOf(
+            State(
+                isLoading = true,
+                hasError = false,
+                isUserAuthenticated = false
+            )
+        )
 
         val splashScreen = applySplashScreen()
 
@@ -48,8 +54,8 @@ class ShareNotesActivity : ComponentActivity() {
         }
 
         splashScreen.setKeepOnScreenCondition {
-            when (state) {
-                is State.Loading -> true
+            when {
+                state.isLoading -> true
                 else -> false
             }
         }
