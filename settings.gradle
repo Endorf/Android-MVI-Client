@@ -35,7 +35,7 @@ dependencyResolutionManagement {
             library('androidx-runtime', 'androidx.compose.runtime:runtime:1.4.3')
         }
         network {
-            library('okhttp3-logging-interceptor', 'com.squareup.okhttp3:logging-interceptor:4.10.0')
+            library('okhttp3-logging-interceptor', 'com.squareup.okhttp3:logging-interceptor:4.12.0')
             library('gson', 'com.google.code.gson:gson:2.10.1')
             library('retrofit2', 'com.squareup.retrofit2:retrofit:2.9.0')
             library('retrofit2-converter-gson', 'com.squareup.retrofit2:converter-gson:2.9.0')
